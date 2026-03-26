@@ -16,11 +16,11 @@ const headerHTML = `
     </div>
 
     <!-- BOTON MOBILE (HAMBURGER) -->
-    <button id="mobile-menu-btn" class="md:hidden text-purple-950 focus:outline-none p-2 rounded-lg hover:bg-purple-100 transition-colors">
-        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button id="mobile-menu-btn" class="md:hidden text-purple-950 focus:outline-none p-2 rounded-xl hover:bg-purple-100 transition-colors flex-shrink-0 z-[70] relative" aria-label="Abrir menú">
+        <svg id="menu-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
-        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
     </button>
