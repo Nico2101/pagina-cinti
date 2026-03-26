@@ -41,7 +41,7 @@ const SITE_DATA = {
             "titulo": "Comunicación Asertiva",
             "descripcionCorta": "Mejorá tus vínculos a través de la palabra.",
             "descripcionLarga": "Comunicar no es solo hablar; es asegurarte de que el otro escuche lo que querés decir. Vas a aprender a diseñar tus conversaciones para cerrar brechas y construir confianza mutua en cualquier ámbito.",
-            "precio": "$11.350 ARS",
+            "precio": "$11 UDS",
             "imagen": "img/curso_comunicacion.png",
             "linkPago": "https://www.mercadopago.com.ar",
             "aprendizajes": [
