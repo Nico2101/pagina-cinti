@@ -28,7 +28,7 @@
                     alert("Usuario no reconocido.");
                     return;
                 }
-                if(inputPass !== "cintia2026") {
+                if(inputPass !== "CintiaAdmin24!") {
                     alert("Contraseña incorrecta.");
                     return;
                 }
