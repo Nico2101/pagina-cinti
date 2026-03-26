@@ -11,7 +11,7 @@ const SITE_DATA = {
             "aprendizajes": [
                 "Diferenciar entre emociones pasajeras y estados de ánimo permanentes.",
                 "Herramientas concretas para salir de la resignación o el resentimiento.",
-                "Cómo nuestro propio lenguaje impacta directamente en lo que sentimos."
+                "Cómo nuestro propio LinkedIn impacta directamente en lo que sentimos."
             ],
             "detalles": [
                 "A tu propio ritmo (Acceso de por vida)",
@@ -80,6 +80,34 @@ const SITE_DATA = {
             "Masterclasses con especialistas invitados",
             "Grupo exclusivo de WhatsApp",
             "Material descargable y desafíos"
+        ]
+    },
+    "sobreMi": {
+        "pilares": [
+            {
+                "titulo": "Escucha Activa",
+                "descripcion": "Un espacio libre de juicios para que puedas expresarte con total libertad."
+            },
+            {
+                "titulo": "Transformación",
+                "descripcion": "Herramientas concretas para destrabar creencias limitantes y avanzar."
+            },
+            {
+                "titulo": "Liderazgo Ejecutivo",
+                "descripcion": "Vasta experiencia liderando organizaciones y equipos de alto impacto con visión estratégica."
+            },
+            {
+                "titulo": "Inteligencia Emocional",
+                "descripcion": "Herramientas de autoconocimiento para navegar el mundo afectivo con sabiduría y coherencia."
+            },
+            {
+                "titulo": "Conversaciones Poderosas",
+                "descripcion": "Diseño y gestión de diálogos que cierran brechas, construyen confianza y abren nuevas posibilidades."
+            },
+            {
+                "titulo": "Coherencia Ontológica",
+                "descripcion": "Trabajo profundo en la alineación entre lo que pensamos, sentimos y proyectamos a través del cuerpo."
+            }
         ]
     }
 };

@@ -111,7 +111,7 @@
                             <input onchange="actualizarDato('cursos', ${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.descripcionCorta || ''}">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Larga (Usa <br> para saltos)</label>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Larga (Usa &lt;br&gt; para saltos)</label>
                             <textarea onchange="actualizarDato('cursos', ${index}, 'descripcionLarga', this.value)" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2 h-24">${curso.descripcionLarga || ''}</textarea>
                         </div>
                         <div class="md:col-span-2">
@@ -129,7 +129,7 @@
                     <h2 class="text-2xl font-bold text-green-900">💎 Gestión de Membresía</h2>
                     <p class="text-green-700 text-sm">Actualizá los textos y beneficios de tu comunidad.</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-20">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium mb-1 text-gray-600">Título de Membresía</label>
@@ -150,6 +150,24 @@
                     </div>
                 </div>
             `;
+
+            // Sección Sobre Mí (Pilares)
+            const s = SITE_DATA.sobreMi;
+            html += `
+                <div class="mb-8 mt-16 bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h2 class="text-2xl font-bold text-blue-900">👩‍💼 Perfil Profesional (Sobre Mí)</h2>
+                    <p class="text-blue-700 text-sm">Editá tus habilidades y pilares profesionales.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-20">
+                    ${s.pilares.map((p, index) => `
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                            <label class="block text-xs font-bold text-blue-600 mb-2 uppercase tracking-widest">Habilidad ${index + 1}</label>
+                            <input onchange="actualizarPilar(${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2 mb-3 font-bold" value="${p.titulo}">
+                            <textarea onchange="actualizarPilar(${index}, 'descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-20 text-sm text-gray-600">${p.descripcion}</textarea>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
             
             container.innerHTML = html;
         }
@@ -160,6 +178,10 @@
 
         function actualizarMembresia(campo, valor) {
             SITE_DATA.membresia[campo] = valor;
+        }
+
+        function actualizarPilar(index, campo, valor) {
+            SITE_DATA.sobreMi.pilares[index][campo] = valor;
         }
 
         function agregarCurso() {
@@ -204,7 +226,7 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        message: "Expansión de contenido desde Panel Admin",
+                        message: "Expansión de pilares profesionales desde Panel Admin",
                         content: base64Content,
                         sha: fileSha 
                     })
