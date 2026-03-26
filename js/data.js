@@ -74,7 +74,7 @@ const SITE_DATA = {
         "titulo": "Comunidad Consciente",
         "subtitulo": "Transformá tu vida dedicando un momento para vos cada semana.",
         "descripcion": "No necesitás experiencia previa. Te acompaño con herramientas prácticas, ejercicios de reflexión y una red que te impulsa a crecer. Un espacio de pertenencia para quienes eligen evolucionar en conjunto.",
-        "precio": "$4.500 ARS",
+        "precio": "$45.000 ARS",
         "beneficios": [
             {
                 "titulo": "Gestión de Emociones",
