@@ -14,10 +14,13 @@
                 <h1 class="text-2xl font-bold">Panel de Administración</h1>
                 <p class="text-purple-300 text-sm">Sincronizado directamente con la Nube</p>
             </div>
-            <button id="btn-save" onclick="guardarEnLaNube()" class="bg-[#b5e4ca] text-purple-950 px-6 py-3 rounded-lg font-bold hover:bg-[#92cda9] shadow-sm transition flex items-center gap-2 hidden">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                Guardar y Publicar en la Web
-            </button>
+            <div class="flex items-center gap-4">
+                <button id="btn-logout" onclick="cerrarSesion()" class="text-purple-300 text-xs hover:text-white underline hidden">Cerrar Sesión</button>
+                <button id="btn-save" onclick="guardarEnLaNube()" class="bg-[#b5e4ca] text-purple-950 px-6 py-3 rounded-lg font-bold hover:bg-[#92cda9] shadow-sm transition flex items-center gap-2 hidden">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Guardar y Publicar en la Web
+                </button>
+            </div>
         </div>
     </div>
 

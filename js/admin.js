@@ -53,6 +53,7 @@
 
                 localStorage.setItem("cintia_admin_auth", "true");
                 document.getElementById("btn-save").classList.remove("hidden");
+                document.getElementById("btn-logout").classList.remove("hidden");
                 document.getElementById("admin-container").classList.remove("hidden");
                 renderAdmin();
                 ocultarCarga();
@@ -134,6 +135,11 @@
                 ocultarCarga();
                 alert("Hubo un error al intentar publicar: " + error.message);
             }
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem("cintia_admin_auth");
+            location.reload();
         }
 
         function mostrarCarga(txt) {
