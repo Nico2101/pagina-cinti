@@ -1,0 +1,5 @@
+body { font-family: 'Inter', sans-serif; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+.bg-aesthetic { background-color: #f5f0f6; }
+.btn-accent { background-color: #b5e4ca; color: #3b284e; transition: all 0.3s; }
+.btn-accent:hover { background-color: #92cda9; transform: translateY(-2px); }

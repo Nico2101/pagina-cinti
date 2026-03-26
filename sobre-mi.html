@@ -6,34 +6,14 @@
     <title>Cintia Agostino | Sobre Mí</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .bg-aesthetic { background-color: #f5f0f6; } /* Lila suave */
-        .btn-accent { background-color: #b5e4ca; color: #3b284e; transition: all 0.3s; } /* Verde claro */
-        .btn-accent:hover { background-color: #92cda9; transform: translateY(-2px); }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-aesthetic text-purple-950">
+<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen">
 
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div class="w-32 md:w-48">
-            <a href="index.html">
-                <img src="1-removebg-preview.png" alt="Cintia Agostino Logo" class="w-full h-auto drop-shadow-md">
-            </a>
-        </div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wider font-medium items-center">
-            <a href="sobre-mi.html" class="hover:text-purple-600 transition-colors">Sobre mí</a>
-            <a href="index.html#cursos" class="hover:text-purple-600 transition-colors">Cursos</a>
-            <a href="membresia.html" class="hover:text-purple-600 transition-colors">Membresía</a>
-            <a href="index.html#sesiones" class="hover:text-purple-600 transition-colors">Sesiones</a>
-            <a href="https://wa.me/tu-numero" class="btn-accent text-purple-950 font-semibold px-5 py-2 rounded-full">Contacto</a>
-        </div>
-    </nav>
-    <div class="w-full h-3 bg-[#b5e4ca]"></div>
+    <header id="main-header" class="w-full relative z-10"></header>
 
     <!-- SECCIÓN SOBRE MÍ -->
-    <section id="sobre-mi" class="bg-white py-24 px-8 border-t border-purple-100 relative overflow-hidden min-h-[calc(100vh-250px)]">
+    <section id="sobre-mi" class="bg-white py-24 px-8 border-t border-purple-100 relative overflow-hidden flex-grow min-h-[calc(100vh-250px)]">
         <!-- Decoración de fondo -->
         <div class="absolute top-0 right-0 w-64 h-64 bg-[#f5f0f6] rounded-bl-full -z-10 opacity-70"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#b5e4ca] rounded-tr-[120px] rounded-tl-[40px] -z-10 opacity-20"></div>
@@ -43,7 +23,7 @@
             <div class="md:w-5/12 w-full flex justify-center relative">
                 <div class="relative w-full max-w-[320px]">
                     <div class="absolute inset-0 bg-[#b5e4ca] rounded-t-full rounded-b-xl rotate-[-4deg] scale-105 -z-10 opacity-60"></div>
-                    <img src="cintia%20agostino%20img.jpg" alt="Cintia Agostino - Sobre Mí" class="w-full h-auto aspect-[3/4] object-cover rounded-t-full rounded-b-xl shadow-lg border-4 border-white">
+                    <img src="img/cintia%20agostino%20img.jpg" alt="Cintia Agostino - Sobre Mí" class="w-full h-auto aspect-[3/4] object-cover rounded-t-full rounded-b-xl shadow-lg border-4 border-white">
                 </div>
             </div>
 
@@ -79,16 +59,8 @@
         </div>
     </section>
 
-    <footer class="py-12 border-t border-purple-200 text-center bg-[#f5f0f6]">
-        <div class="flex flex-col items-center justify-center mb-6">
-            <img src="1-removebg-preview.png" alt="Cintia Agostino Icon" class="w-24 mb-4 opacity-80">
-            <p class="text-xs uppercase tracking-widest text-purple-800/60">© 2026 Cintia Agostino - Coaching Ontológico</p>
-        </div>
-        <div class="flex justify-center space-x-6 mt-6">
-            <a href="https://instagram.com/cintiaagostino" class="text-purple-800/60 hover:text-purple-900 transition-colors">Instagram</a>
-            <a href="#" class="text-purple-800/60 hover:text-purple-900 transition-colors">LinkedIn</a>
-        </div>
-    </footer>
+    <footer id="main-footer" class="w-full mt-auto"></footer>
 
+    <script src="js/components.js"></script>
 </body>
 </html>

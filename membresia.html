@@ -6,34 +6,14 @@
     <title>Cintia Agostino | Membresía</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .bg-aesthetic { background-color: #f5f0f6; } /* Lila suave */
-        .btn-accent { background-color: #b5e4ca; color: #3b284e; transition: all 0.3s; } /* Verde claro */
-        .btn-accent:hover { background-color: #92cda9; transform: translateY(-2px); }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-aesthetic text-purple-950">
+<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen">
 
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div class="w-32 md:w-48">
-            <a href="index.html">
-                <img src="1-removebg-preview.png" alt="Cintia Agostino Logo" class="w-full h-auto drop-shadow-md">
-            </a>
-        </div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wider font-medium items-center">
-            <a href="sobre-mi.html" class="hover:text-purple-600 transition-colors">Sobre mí</a>
-            <a href="index.html#cursos" class="hover:text-purple-600 transition-colors">Cursos</a>
-            <a href="membresia.html" class="hover:text-purple-600 transition-colors">Membresía</a>
-            <a href="index.html#sesiones" class="hover:text-purple-600 transition-colors">Sesiones</a>
-            <a href="https://wa.me/tu-numero" class="btn-accent text-purple-950 font-semibold px-5 py-2 rounded-full">Contacto</a>
-        </div>
-    </nav>
-    <div class="w-full h-3 bg-[#b5e4ca]"></div>
+    <header id="main-header" class="w-full relative z-10"></header>
 
     <!-- SECCIÓN MEMBRESÍA -->
-    <section id="membresia" class="bg-[#f5f0f6] py-20 px-8 min-h-[calc(100vh-250px)]">
+    <section id="membresia" class="bg-[#f5f0f6] py-20 px-8 flex-grow min-h-[calc(100vh-250px)]">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
             
             <!-- Beneficios y Texto -->
@@ -111,16 +91,8 @@
         </div>
     </section>
 
-    <footer class="py-12 border-t border-purple-200 text-center bg-[#f5f0f6]">
-        <div class="flex flex-col items-center justify-center mb-6">
-            <img src="1-removebg-preview.png" alt="Cintia Agostino Icon" class="w-24 mb-4 opacity-80">
-            <p class="text-xs uppercase tracking-widest text-purple-800/60">© 2026 Cintia Agostino - Coaching Ontológico</p>
-        </div>
-        <div class="flex justify-center space-x-6 mt-6">
-            <a href="https://instagram.com/cintiaagostino" class="text-purple-800/60 hover:text-purple-900 transition-colors">Instagram</a>
-            <a href="#" class="text-purple-800/60 hover:text-purple-900 transition-colors">LinkedIn</a>
-        </div>
-    </footer>
+    <footer id="main-footer" class="w-full mt-auto"></footer>
 
+    <script src="js/components.js"></script>
 </body>
 </html>
