@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cintia Agostino | Sobre Mí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .bg-aesthetic { background-color: #f5f0f6; } /* Lila suave */
+        .btn-accent { background-color: #b5e4ca; color: #3b284e; transition: all 0.3s; } /* Verde claro */
+        .btn-accent:hover { background-color: #92cda9; transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-aesthetic text-purple-950">
+
+    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+        <div class="w-32 md:w-48">
+            <a href="index.html">
+                <img src="1-removebg-preview.png" alt="Cintia Agostino Logo" class="w-full h-auto drop-shadow-md">
+            </a>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wider font-medium items-center">
+            <a href="sobre-mi.html" class="hover:text-purple-600 transition-colors">Sobre mí</a>
+            <a href="index.html#cursos" class="hover:text-purple-600 transition-colors">Cursos</a>
+            <a href="membresia.html" class="hover:text-purple-600 transition-colors">Membresía</a>
+            <a href="index.html#sesiones" class="hover:text-purple-600 transition-colors">Sesiones</a>
+            <a href="https://wa.me/tu-numero" class="btn-accent text-purple-950 font-semibold px-5 py-2 rounded-full">Contacto</a>
+        </div>
+    </nav>
+    <div class="w-full h-3 bg-[#b5e4ca]"></div>
+
+    <!-- SECCIÓN SOBRE MÍ -->
+    <section id="sobre-mi" class="bg-white py-24 px-8 border-t border-purple-100 relative overflow-hidden min-h-[calc(100vh-250px)]">
+        <!-- Decoración de fondo -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-[#f5f0f6] rounded-bl-full -z-10 opacity-70"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#b5e4ca] rounded-tr-[120px] rounded-tl-[40px] -z-10 opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <!-- Imagen / Composición visual -->
+            <div class="md:w-5/12 w-full flex justify-center relative">
+                <div class="relative w-full max-w-[320px]">
+                    <div class="absolute inset-0 bg-[#b5e4ca] rounded-t-full rounded-b-xl rotate-[-4deg] scale-105 -z-10 opacity-60"></div>
+                    <img src="cintia%20agostino%20img.jpg" alt="Cintia Agostino - Sobre Mí" class="w-full h-auto aspect-[3/4] object-cover rounded-t-full rounded-b-xl shadow-lg border-4 border-white">
+                </div>
+            </div>
+
+            <!-- Texto descriptivo -->
+            <div class="md:w-7/12 w-full space-y-6">
+                <span class="text-[#92cda9] font-bold tracking-widest uppercase text-sm">Conoceme un poco más</span>
+                <h2 class="text-4xl md:text-5xl text-purple-950 font-serif leading-tight">Hola, soy Cintia Agostino.</h2>
+                <h3 class="text-xl text-purple-900 font-light italic border-l-4 border-[#b5e4ca] pl-4">Coach Ontológica Profesional y Directora Ejecutiva de la AACOP, apasionada por el desarrollo humano y la transformación consciente.</h3>
+                
+                <div class="text-purple-800/80 space-y-4 text-base leading-relaxed">
+                    <p>
+                        Mi propósito es acompañarte a descubrir tu propio potencial. Creo firmemente que todos tenemos los recursos necesarios para diseñar la vida que queremos habitar, pero a veces necesitamos a alguien que nos haga las preguntas indicadas para encontrar nuestras propias respuestas.
+                    </p>
+                    <p>
+                        A través del Coaching Ontológico, trabajamos en la coherencia entre tu cuerpo, tu lenguaje y tus emociones. Esta disciplina no te dice qué hacer, sino que te invita a observar cómo estás interpretando tu realidad para abrir nuevas posibilidades de acción.
+                    </p>
+                </div>
+
+                <!-- Pilares -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-[#f5f0f6] p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
+                        <svg class="w-8 h-8 text-[#92cda9] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        <h4 class="font-bold text-purple-950 mb-1">Escucha Activa</h4>
+                        <p class="text-xs text-purple-800/70">Un espacio libre de juicios para que puedas expresarte con total libertad.</p>
+                    </div>
+                    <div class="bg-[#f5f0f6] p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
+                        <svg class="w-8 h-8 text-[#92cda9] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <h4 class="font-bold text-purple-950 mb-1">Transformación</h4>
+                        <p class="text-xs text-purple-800/70">Herramientas concretas para destrabar creencias limitantes y avanzar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-purple-200 text-center bg-[#f5f0f6]">
+        <div class="flex flex-col items-center justify-center mb-6">
+            <img src="1-removebg-preview.png" alt="Cintia Agostino Icon" class="w-24 mb-4 opacity-80">
+            <p class="text-xs uppercase tracking-widest text-purple-800/60">© 2026 Cintia Agostino - Coaching Ontológico</p>
+        </div>
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="https://instagram.com/cintiaagostino" class="text-purple-800/60 hover:text-purple-900 transition-colors">Instagram</a>
+            <a href="#" class="text-purple-800/60 hover:text-purple-900 transition-colors">LinkedIn</a>
+        </div>
+    </footer>
+
+</body>
+</html>
