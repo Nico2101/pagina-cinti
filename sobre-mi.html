@@ -14,7 +14,10 @@
 
     <!-- SECCIÓN SOBRE MÍ -->
     <section id="sobre-mi" class="bg-white py-24 px-8 border-t border-purple-100 relative overflow-hidden flex-grow min-h-[calc(100vh-250px)]">
-        <!-- Decoración de fondo -->
+        <!-- Banner de fondo para contraste -->
+        <div class="absolute top-1/4 left-0 w-full h-[300px] bg-[#f5f0f6] -z-10 mix-blend-multiply opacity-50"></div>
+        
+        <!-- Decoración de fondo adicional -->
         <div class="absolute top-0 right-0 w-64 h-64 bg-[#f5f0f6] rounded-bl-full -z-10 opacity-70"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#b5e4ca] rounded-tr-[120px] rounded-tl-[40px] -z-10 opacity-20"></div>
 
@@ -22,8 +25,14 @@
             <!-- Imagen / Composición visual -->
             <div class="md:w-5/12 w-full flex justify-center relative">
                 <div class="relative w-full max-w-[320px]">
+                    <!-- Círculo de contraste detrás de la foto -->
+                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-[#b5e4ca] rounded-full -z-10 blur-2xl opacity-40"></div>
                     <div class="absolute inset-0 bg-[#b5e4ca] rounded-t-full rounded-b-xl rotate-[-4deg] scale-105 -z-10 opacity-60"></div>
                     <img src="img/cintia%20agostino%20img.jpg" alt="Cintia Agostino - Sobre Mí" class="w-full h-auto aspect-[3/4] object-cover rounded-t-full rounded-b-xl shadow-lg border-4 border-white">
+                    <!-- Detalle flotante -->
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-purple-50 hidden md:block animate-bounce-slow">
+                        <span class="text-xs font-bold text-purple-900 leading-tight">10+ años de<br>experiencia</span>
+                    </div>
                 </div>
             </div>
 
