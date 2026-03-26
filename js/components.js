@@ -1,10 +1,7 @@
 const headerHTML = `
-<nav class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center relative z-50">
-    <a href="index.html" class="text-2xl font-bold tracking-tighter text-purple-950 flex items-center gap-2 group">
-        <div class="w-8 h-8 bg-[#b5e4ca] rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform shadow-sm">
-            <span class="text-xs text-purple-950">CA</span>
-        </div>
-        Cintia Agostino
+<nav class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center relative z-50">
+    <a href="index.html" class="flex items-center group">
+        <img src="img/1-removebg-preview.png" alt="Cintia Agostino Logo" class="h-16 md:h-20 w-auto group-hover:scale-105 transition-transform">
     </a>
     
     <!-- MENU DESKTOP -->
@@ -39,7 +36,7 @@ const footerHTML = `
 <footer class="bg-purple-950 text-white py-20 px-8">
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
         <div class="col-span-1 md:col-span-2 space-y-6">
-            <h3 class="text-3xl font-bold tracking-tighter">Cintia Agostino</h3>
+            <img src="img/1-removebg-preview.png" alt="Cintia Agostino Logo" class="h-20 w-auto brightness-0 invert opacity-90">
             <p class="text-purple-200/60 max-w-sm leading-relaxed">Acompañando procesos de autoconocimiento y transformación a través del Coaching Ontológico Profesional.</p>
         </div>
         <div class="space-y-4">
