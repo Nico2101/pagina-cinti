@@ -128,7 +128,7 @@
                 fileSha = data.content.sha; 
 
                 ocultarCarga();
-                alert("🎉 ¡Actualización un éxito!\n\nNetlify ya recibió la orden y los cambios impactarán en tu página en aprox 15 a 30 segundos.");
+                alert("🎉 ¡Actualización un éxito!\n\nLos cambios ya están viajando a internet. Deberías verlos reflejados en tu página (GitHub.io) en aprox 20 a 30 segundos.");
 
             } catch(error) {
                 ocultarCarga();
