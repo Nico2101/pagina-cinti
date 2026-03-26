@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cintia Agostino | Tu Material</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    </style>
+</head>
+<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen">
+
+    <header id="main-header" class="w-full relative z-10"></header>
+
+    <!-- PÁGINA DE ENTREGA DE MATERIAL -->
+    <main class="flex-grow py-20 px-8 relative overflow-hidden">
+        <!-- Decoración -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#b5e4ca] rounded-full filter blur-[100px] opacity-20 -z-10 truncate"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full filter blur-[100px] opacity-20 -z-10 truncate"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8 inline-block animate-bounce-slow">
+                <span class="bg-[#b5e4ca] text-purple-950 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">🚀 ¡Bienvenida/o al Curso!</span>
+            </div>
+            
+            <h1 id="mat-titulo" class="text-4xl md:text-6xl text-purple-950 font-serif mb-6 leading-tight">Cargando...</h1>
+            <p class="text-xl text-purple-900 font-light italic mb-12">Gracias por confiar en este proceso de transformación.</p>
+
+            <!-- Card de Material -->
+            <div class="glass p-8 md:p-12 rounded-[40px] shadow-2xl text-left border border-white relative mb-12">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-purple-900 mb-4">Tu Material de Estudio</h2>
+                        <p class="text-purple-800/70 mb-8 leading-relaxed">
+                            Aquí tenés acceso directo al material principal. Te sugiero descargar el cuaderno de ejercicios antes de comenzar con los videos o lecturas.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <!-- Link Descarga PDF -->
+                            <a href="#" class="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition group border border-purple-50">
+                                <div class="bg-red-50 p-3 rounded-xl text-red-500 group-hover:bg-red-500 group-hover:text-white transition">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                </div>
+                                <div class="flex-grow">
+                                    <span class="block font-bold text-purple-950">Cuaderno de Ejercicios</span>
+                                    <span class="text-xs text-purple-400">Guía Práctica - PDF (5MB)</span>
+                                </div>
+                            </a>
+
+                            <!-- Link Video/Clase -->
+                            <a href="#" class="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition group border border-purple-50">
+                                <div class="bg-purple-50 p-3 rounded-xl text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path></svg>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </div>
+                                <div class="flex-grow">
+                                    <span class="block font-bold text-purple-950">Acceso a Video Clases</span>
+                                    <span class="text-xs text-purple-400">Plataforma Exclusiva</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <img id="mat-img" src="" alt="Portada" class="w-full h-auto rounded-3xl shadow-lg border-8 border-white">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-[#b5e4ca]/30 inline-flex items-center gap-4 mb-12">
+                <div class="w-12 h-12 bg-[#b5e4ca] rounded-full flex items-center justify-center text-purple-950">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                </div>
+                <div class="text-left">
+                    <p class="text-sm font-bold text-purple-950">¿Dudas con el material?</p>
+                    <p class="text-xs text-purple-800/60 leading-tight">Escribime directamente para acompañarte.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="main-footer" class="w-full mt-auto"></footer>
+
+    <script src="js/components.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cursoId = urlParams.get('curso');
+            
+            if(typeof SITE_DATA === 'undefined') return;
+            
+            const curso = SITE_DATA.cursos.find(c => c.id === cursoId) || SITE_DATA.cursos[0];
+            
+            document.getElementById('mat-titulo').innerText = curso.titulo;
+            document.getElementById('mat-img').src = curso.imagen;
+        });
+    </script>
+</body>
+</html>
