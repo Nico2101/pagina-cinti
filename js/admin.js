@@ -130,6 +130,15 @@
                             <label class="block text-sm font-medium mb-1 text-slate-400">WhatsApp / Link de Pago</label>
                             <input onchange="actualizarDato('cursos', ${index}, 'linkPago', this.value)" type="text" class="w-full border border-green-200 rounded-lg bg-green-50 p-3 text-sm text-green-800" value="${curso.linkPago || ''}">
                         </div>
+
+                        <!-- NUEVO: LINK DE ENTREGA (READ ONLY) -->
+                        <div class="md:col-span-2 bg-slate-50 p-4 rounded-xl border border-dashed border-slate-200">
+                             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Link de Entrega (Para enviar al alumno después del pago)</label>
+                             <div class="flex gap-2">
+                                <input readonly type="text" class="flex-grow bg-white border border-slate-200 rounded-lg p-2 text-xs text-slate-500" value="https://${REPO_OWNER}.github.io/${REPO_NAME}/material.html?curso=${curso.id}">
+                                <button onclick="navigator.clipboard.writeText('https://${REPO_OWNER}.github.io/${REPO_NAME}/material.html?curso=${curso.id}'); alert('¡Link copiado!')" class="bg-purple-100 text-purple-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-200 transition">Copiar Link</button>
+                             </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
