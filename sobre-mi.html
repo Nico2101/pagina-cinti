@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cintia Agostino | Sobre Mí</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen">
+
+<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen overflow-x-hidden">
 
     <header id="main-header" class="w-full relative z-10"></header>
 
     <!-- SECCIÓN SOBRE MÍ -->
-    <section id="sobre-mi" class="bg-white py-24 px-8 border-t border-purple-100 relative overflow-hidden flex-grow min-h-[calc(100vh-250px)]">
+    <section id="sobre-mi" class="bg-white py-12 md:py-24 px-8 border-t border-purple-100 relative overflow-hidden flex-grow min-h-[calc(100vh-250px)]">
         <!-- Banner de fondo para contraste -->
-        <div class="absolute top-1/4 left-0 w-full h-[350px] bg-[#ece1ef] -z-10 opacity-70"></div>
+        <div class="absolute top-1/4 left-0 w-full h-[300px] md:h-[350px] bg-[#ece1ef] -z-10 opacity-70"></div>
         
         <!-- Decoración de fondo adicional -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-[#f5f0f6] rounded-bl-full -z-10 opacity-70"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#b5e4ca] rounded-tr-[120px] rounded-tl-[40px] -z-10 opacity-20"></div>
+        <div class="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-[#f5f0f6] rounded-bl-full -z-10 opacity-70"></div>
 
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
-            <!-- Imagen / Composición visual -->
-            <div class="md:w-5/12 w-full flex justify-center relative">
-                <div class="relative w-full max-w-[320px]">
-                    <!-- Círculo de contraste detrás de la foto -->
-                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-[#b5e4ca] rounded-full -z-10 blur-2xl opacity-40"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
+            <!-- Imagen con Estilo Premium -->
+            <div class="w-2/3 md:w-1/3 relative order-2 md:order-1">
+                <div class="relative w-full max-w-[280px] md:max-w-[320px] mx-auto">
+                    <div class="absolute -top-10 -left-10 w-24 h-24 md:w-32 md:h-32 bg-[#b5e4ca] rounded-full -z-10 blur-2xl opacity-40"></div>
                     <div class="absolute inset-0 bg-[#b5e4ca] rounded-t-full rounded-b-xl rotate-[-4deg] scale-105 -z-10 opacity-60"></div>
                     <img src="img/cintia%20agostino%20img.jpg" alt="Cintia Agostino - Sobre Mí" class="w-full h-auto aspect-[3/4] object-cover rounded-t-full rounded-b-xl shadow-lg border-4 border-white">
                 </div>
             </div>
 
-            <!-- Texto descriptivo -->
-            <div class="md:w-7/12 w-full space-y-6">
-                <span class="text-[#92cda9] font-bold tracking-widest uppercase text-sm">Conoceme un poco más</span>
-                <h2 class="text-4xl md:text-5xl text-purple-950 font-serif leading-tight">Hola, soy Cintia Agostino.</h2>
-                <h3 class="text-xl text-purple-900 font-light italic border-l-4 border-[#b5e4ca] pl-4">Coach Ontológica Profesional y Directora Ejecutiva de la AACOP, apasionada por el desarrollo humano y la transformación consciente.</h3>
+            <!-- Texto Descriptivo -->
+            <div class="w-full md:w-2/3 space-y-6 md:space-y-8 text-center md:text-left order-1 md:order-2">
+                <span class="inline-block text-[#92cda9] font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Mi Compromiso</span>
+                <h1 class="text-4xl md:text-6xl text-purple-950 leading-tight font-serif">Acompañar tu <br class="hidden md:block">propio viaje.</h1>
+                <p class="text-base md:text-lg text-purple-800/80 leading-relaxed max-w-2xl mx-auto md:mx-0">
+                    Soy Cintia Agostino, Coach Ontológica Profesional enfocada en ayudar a personas y organizaciones a encontrar su propia coherencia. 
+                    <br><br>
+                    Mi propósito es brindarte herramientas que te permitan observar tu realidad desde nuevas perspectivas, diseñando conversaciones poderosas y acciones que te acerquen a la vida que querés habitar.
+                </p>
                 
-                <div class="text-purple-800/80 space-y-4 text-base leading-relaxed">
-                    <p>
-                        Mi propósito es acompañarte a descubrir tu propio potencial. Creo firmemente que todos tenemos los recursos necesarios para diseñar la vida que queremos habitar, pero a veces necesitamos a alguien que nos haga las preguntas indicadas para encontrar nuestras propias respuestas.
-                    </p>
-                    <p>
-                        A través del Coaching Ontológico, trabajamos en la coherencia entre tu cuerpo, tu lenguaje y tus emociones. Esta disciplina no te dice qué hacer, sino que te invita a observar cómo estás interpretando tu realidad para abrir nuevas posibilidades de acción.
-                    </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-8">
+                    <span class="bg-[#ece1ef] text-purple-800 px-4 py-2 rounded-full text-[10px] border border-purple-100 font-bold uppercase tracking-widest">Empatía</span>
+                    <span class="bg-[#ece1ef] text-purple-800 px-4 py-2 rounded-full text-[10px] border border-purple-100 font-bold uppercase tracking-widest">Coherencia</span>
+                    <span class="bg-[#ece1ef] text-purple-800 px-4 py-2 rounded-full text-[10px] border border-purple-100 font-bold uppercase tracking-widest">Acción</span>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Pilares Dinámicos -->
-                <div id="pilares-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <!-- Dinámico -->
-                </div>
+    <!-- CUADRÍCULA DE PILARES Dinámicos -->
+    <section class="bg-aesthetic py-20 px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-serif text-center mb-16 text-purple-950">Pilares de mi Práctica</h2>
+            <div id="pilares-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Generado por JS -->
             </div>
         </div>
     </section>
@@ -61,28 +69,27 @@
     <script src="js/data.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            if(typeof SITE_DATA === 'undefined' || !SITE_DATA.sobreMi) return;
             const container = document.getElementById('pilares-container');
-            
-            const icons = [
-                '<path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>',
-                '<path d="M13 10V3L4 14h7v7l9-11h-7z"></path>',
-                '<path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z"></path>',
-                '<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>',
-                '<path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>',
-                '<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
-            ];
-
-            container.innerHTML = SITE_DATA.sobreMi.pilares.map((p, index) => `
-                <div class="bg-[#f5f0f6] p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
-                    <svg class="w-8 h-8 text-[#92cda9] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        ${icons[index % icons.length]}
-                    </svg>
-                    <h4 class="font-bold text-purple-950 mb-1">${p.titulo}</h4>
-                    <p class="text-xs text-purple-800/70">${p.descripcion}</p>
-                </div>
-            `).join('');
+            if (container && typeof SITE_DATA !== 'undefined') {
+                const icons = [
+                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>',
+                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
+                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>',
+                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>',
+                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>',
+                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>'
+                ];
+                
+                container.innerHTML = SITE_DATA.sobreMi.pilares.map((p, index) => `
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-purple-100 hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-[#b5e4ca] mb-6">${icons[index % icons.length]}</div>
+                        <h3 class="text-xl font-bold mb-4 text-purple-950">${p.titulo}</h3>
+                        <p class="text-purple-950/70 text-sm leading-relaxed">${p.descripcion}</p>
+                    </div>
+                `).join('');
+            }
         });
     </script>
 </body>
+
 </html>

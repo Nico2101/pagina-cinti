@@ -76,6 +76,12 @@
             // Actualizar Sidebar UI
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('sidebar-link-active'));
             document.getElementById(`nav-${vista}`).classList.add('sidebar-link-active');
+
+            // Cerrar sidebar en mobile si está abierto
+            if(window.innerWidth < 1024) { // Tailwind's lg/md threshold check or similar
+                const sidebar = document.getElementById('sidebar');
+                if(sidebar && !sidebar.classList.contains('hidden')) toggleSidebar();
+            }
             
             // Títulos
             const titulos = {

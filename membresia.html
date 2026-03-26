@@ -8,44 +8,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen">
+<body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen overflow-x-hidden">
 
-    <header id="main-header" class="w-full relative z-10"></header>
+    <header id="main-header" class="w-full relative z-50"></header>
 
     <!-- SECCIÓN MEMBRESÍA -->
-    <section id="membresia" class="bg-[#f5f0f6] py-20 px-8 flex-grow min-h-[calc(100vh-250px)]">
+    <section id="membresia" class="bg-[#f5f0f6] py-12 md:py-24 px-8 flex-grow">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
             
             <!-- Beneficios y Texto -->
-            <div class="md:w-1/2 space-y-6">
-                <h2 id="mem-titulo" class="text-4xl text-purple-950 mb-2 font-serif">Cargando...</h2>
-                <h3 id="mem-subtitulo" class="text-xl text-purple-900 font-light italic"></h3>
+            <div class="w-full md:w-1/2 space-y-6 text-center md:text-left">
+                <h2 id="mem-titulo" class="text-3xl md:text-4xl text-purple-950 mb-2 font-serif leading-tight">Cargando...</h2>
+                <h3 id="mem-subtitulo" class="text-lg md:text-xl text-purple-900 font-light italic"></h3>
                 
-                <p id="mem-descripcion" class="text-purple-800/80"></p>
+                <p id="mem-descripcion" class="text-sm md:text-base text-purple-800/80 leading-relaxed"></p>
                 
-                <div id="mem-beneficios" class="space-y-6 mt-8">
+                <div id="mem-beneficios" class="space-y-6 mt-8 text-left">
                     <!-- Dinámico -->
                 </div>
             </div>
 
             <!-- Pricing / Subscription Card -->
-            <div class="md:w-1/2 w-full flex justify-center mt-10 md:mt-0">
-                <div class="bg-white rounded-tl-[60px] rounded-br-[60px] rounded-tr-[20px] rounded-bl-[20px] shadow-xl p-10 w-full max-w-md border border-purple-100 relative">
-                    <div class="absolute -top-4 -right-4 bg-[#b5e4ca] text-purple-950 text-xs uppercase font-bold px-4 py-1 rounded-full shadow-md transform rotate-3">
+            <div class="w-full md:w-1/2 flex justify-center mt-12 md:mt-0">
+                <div class="bg-white rounded-tl-[60px] rounded-br-[60px] rounded-tr-[20px] rounded-bl-[20px] shadow-xl p-8 md:p-12 w-full max-w-sm border border-purple-100 relative">
+                    <div class="absolute -top-4 -right-2 bg-[#b5e4ca] text-purple-950 text-[10px] md:text-xs uppercase font-bold px-4 py-1.5 rounded-full shadow-md transform rotate-3 z-10">
                         ¡Lanzamiento!
                     </div>
-                    <h3 class="text-2xl text-center text-purple-950 mb-2 font-serif">Suscripción Mensual</h3>
-                    <p class="text-center text-purple-800/60 text-sm mb-6 uppercase tracking-widest">¿Qué incluye?</p>
+                    <h3 class="text-xl md:text-2xl text-center text-purple-950 mb-2 font-serif">Suscripción Mensual</h3>
+                    <p class="text-center text-purple-800/60 text-[10px] mb-6 uppercase tracking-widest">¿Qué incluye?</p>
                     
                     <ul id="mem-items" class="space-y-4 mb-8">
                         <!-- Dinámico -->
                     </ul>
 
-                    <div class="text-center mb-8 bg-[#f5f0f6] py-3 rounded-lg border border-purple-100">
+                    <div class="text-center mb-8 bg-[#f5f0f6] py-4 rounded-2xl border border-purple-100">
                         <span id="mem-precio" class="text-3xl font-bold text-purple-950"></span> <span class="text-purple-800/60 text-xs uppercase tracking-wider">/ mes</span>
                     </div>
 
-                    <a href="https://wa.me/tu-numero" target="_blank" class="block w-full text-center bg-[#b5e4ca] text-purple-950 py-4 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[#92cda9] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">¡Quiero Sumarme!</a>
+                    <a id="mem-cta" href="#" target="_blank" class="block w-full text-center bg-[#b5e4ca] text-purple-950 py-4 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[#92cda9] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">¡Quiero Sumarme!</a>
                 </div>
             </div>
 
@@ -60,25 +60,29 @@
         document.addEventListener('DOMContentLoaded', () => {
             if(typeof SITE_DATA === 'undefined' || !SITE_DATA.membresia) return;
             const m = SITE_DATA.membresia;
+            const s = SITE_DATA.sesiones;
             
             document.getElementById('mem-titulo').innerText = m.titulo;
             document.getElementById('mem-subtitulo').innerText = m.subtitulo;
             document.getElementById('mem-descripcion').innerText = m.descripcion;
             document.getElementById('mem-precio').innerText = m.precio;
+            
+            // Link Dinámico (Reusando el de sesiones si no hay uno específico)
+            if(s) document.getElementById('mem-cta').href = s.whatsapp;
 
             document.getElementById('mem-beneficios').innerHTML = m.beneficios.map(b => `
                 <div class="flex items-start">
-                    <svg class="w-6 h-6 text-[#92cda9] mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <svg class="w-5 h-5 text-[#92cda9] mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     <div>
-                        <h4 class="font-bold text-purple-900 text-lg">${b.titulo}</h4>
-                        <p class="text-sm text-purple-800/70">${b.descripcion}</p>
+                        <h4 class="font-bold text-purple-900 text-base md:text-lg">${b.titulo}</h4>
+                        <p class="text-xs md:text-sm text-purple-800/70 leading-relaxed">${b.descripcion}</p>
                     </div>
                 </div>
             `).join('');
 
             document.getElementById('mem-items').innerHTML = m.itemsIncluidos.map(item => `
-                <li class="flex items-center text-sm text-purple-900">
-                    <svg class="w-5 h-5 text-[#b5e4ca] mr-3 font-bold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                <li class="flex items-center text-xs md:text-sm text-purple-900">
+                    <svg class="w-4 h-4 text-[#b5e4ca] mr-3 font-bold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     ${item}
                 </li>
             `).join('');
