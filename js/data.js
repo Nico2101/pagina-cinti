@@ -1,14 +1,14 @@
 const SITE_DATA = {
     cursos: [
         {
-            id: "gestion-emocional",
-            titulo: "Gestión Emocional",
-            descripcionCorta: "Aprendé a identificar y transformar tus emociones en aliados.",
-            descripcionLarga: "En este programa exploraremos el mundo de las emociones desde la perspectiva del Coaching Ontológico. Entenderemos que ninguna emoción es negativa, sino que todas traen un mensaje y nos predisponen a actuar de cierta forma.",
-            precio: "$XXXX ARS",
-            imagen: "img/curso_gestion.png",
-            linkPago: "https://www.mercadopago.com.ar",
-            aprendizajes: [
+            "id": "gestion-emocional",
+            "titulo": "Gestión Emocional",
+            "descripcionCorta": "Aprendé a identificar y transformar tus emociones en aliados.",
+            "descripcionLarga": "En este programa exploraremos el mundo de las emociones desde la perspectiva del Coaching Ontológico. Entenderemos que ninguna emoción es negativa, sino que todas traen un mensaje y nos predisponen a actuar de cierta forma.",
+            "precio": "$9.000 ARS",
+            "imagen": "curso_gestion.png",
+            "linkPago": "https://www.mercadopago.com.ar",
+            "aprendizajes": [
                 "Diferenciar entre emociones pasajeras y estados de ánimo permanentes.",
                 "Herramientas concretas para salir de la resignación o el resentimiento.",
                 "Cómo nuestro propio lenguaje impacta directamente en lo que sentimos."
