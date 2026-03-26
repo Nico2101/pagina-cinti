@@ -35,30 +35,29 @@
                     <div>
                         <h2 class="text-2xl font-bold text-purple-900 mb-4">Tu Material de Estudio</h2>
                         <p class="text-purple-800/70 mb-8 leading-relaxed">
-                            Aquí tenés acceso directo al material principal. Te sugiero descargar el cuaderno de ejercicios antes de comenzar con los videos o lecturas.
+                            Aquí tenés acceso directo al material principal. Te sugiero descargar el cuaderno de ejercicios antes de comenzar con los con los videos o lecturas.
                         </p>
                         
                         <div class="space-y-4">
                             <!-- Link Descarga PDF -->
-                            <a href="#" class="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition group border border-purple-50">
+                            <a id="mat-link-pdf" href="#" target="_blank" class="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition group border border-purple-50">
                                 <div class="bg-red-50 p-3 rounded-xl text-red-500 group-hover:bg-red-500 group-hover:text-white transition">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                 </div>
                                 <div class="flex-grow">
                                     <span class="block font-bold text-purple-950">Cuaderno de Ejercicios</span>
-                                    <span class="text-xs text-purple-400">Guía Práctica - PDF (5MB)</span>
+                                    <span class="text-xs text-purple-400">Guía Práctica - PDF (Clic para abrir)</span>
                                 </div>
                             </a>
 
                             <!-- Link Video/Clase -->
-                            <a href="#" class="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition group border border-purple-50">
+                            <a id="mat-link-video" href="#" target="_blank" class="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition group border border-purple-50">
                                 <div class="bg-purple-50 p-3 rounded-xl text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path></svg>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </div>
                                 <div class="flex-grow">
                                     <span class="block font-bold text-purple-950">Acceso a Video Clases</span>
-                                    <span class="text-xs text-purple-400">Plataforma Exclusiva</span>
+                                    <span class="text-xs text-purple-400">Plataforma Digital / Video</span>
                                 </div>
                             </a>
                         </div>
@@ -96,6 +95,12 @@
             
             document.getElementById('mat-titulo').innerText = curso.titulo;
             document.getElementById('mat-img').src = curso.imagen;
+            
+            const mLink = document.getElementById('mat-link-pdf');
+            const vLink = document.getElementById('mat-link-video');
+            
+            if(mLink) mLink.href = curso.linkMaterial || '#';
+            if(vLink) vLink.href = curso.linkVideo || '#';
         });
     </script>
 </body>

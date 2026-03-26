@@ -126,6 +126,14 @@
                             <label class="block text-sm font-medium mb-1 text-slate-400">Descripción Corta (Cards)</label>
                             <input onchange="actualizarDato('cursos', ${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-slate-200 rounded-lg bg-slate-50 p-3 text-sm" value="${curso.descripcionCorta || ''}">
                         </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400 underline">Link PDF / Material (Google Drive/etc)</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'linkMaterial', this.value)" type="text" class="w-full border border-slate-200 rounded-lg bg-orange-50 p-3 text-sm" value="${curso.linkMaterial || '#'}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400 underline">Link Video / Clase</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'linkVideo', this.value)" type="text" class="w-full border border-slate-200 rounded-lg bg-orange-50 p-3 text-sm" value="${curso.linkVideo || '#'}">
+                        </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium mb-1 text-slate-400">WhatsApp / Link de Pago</label>
                             <input onchange="actualizarDato('cursos', ${index}, 'linkPago', this.value)" type="text" class="w-full border border-green-200 rounded-lg bg-green-50 p-3 text-sm text-green-800" value="${curso.linkPago || ''}">

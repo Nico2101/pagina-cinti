@@ -8,6 +8,8 @@ const SITE_DATA = {
             "precio": "$9.500 ARS",
             "imagen": "img/curso_gestion_v2.png",
             "linkPago": "https://www.mercadopago.com.ar",
+            "linkMaterial": "#",
+            "linkVideo": "#",
             "aprendizajes": [
                 "Identificación de disparadores emocionales.",
                 "Técnicas de respiración y presencia plena.",
@@ -29,6 +31,8 @@ const SITE_DATA = {
             "precio": "$12.000 ARS",
             "imagen": "img/curso_liderazgo_v2.png",
             "linkPago": "https://www.mercadopago.com.ar",
+            "linkMaterial": "#",
+            "linkVideo": "#",
             "aprendizajes": [
                 "Liderazgo basado en valores and autenticidad.",
                 "Coordinación de acciones y pedidos efectivos.",
@@ -50,6 +54,8 @@ const SITE_DATA = {
             "precio": "$8.500 ARS",
             "imagen": "img/curso_comunicacion_v2.png",
             "linkPago": "https://www.mercadopago.com.ar",
+            "linkMaterial": "#",
+            "linkVideo": "#",
             "aprendizajes": [
                 "Diferencia entre hechos, opiniones y pedidos.",
                 "Técnicas de escucha empática y validación.",
