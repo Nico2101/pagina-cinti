@@ -5,9 +5,9 @@ const SITE_DATA = {
             "titulo": "Gestión Emocional Integral",
             "descripcionCorta": "Dominá tus emociones para liderar tu vida con serenidad y claridad.",
             "descripcionLarga": "Este programa te brindará las herramientas necesarias para identificar, comprender y regular tus estados emocionales. Aprenderás a transformar el estrés y la frustración en aliados para tu crecimiento personal, logrando una mayor coherencia entre lo que sentís y cómo actuás en el día a día.",
-            "precio": "$9.500 ARS",
+            "precio": "$10 ARS",
             "imagen": "img/curso_gestion_v2.png",
-            "linkPago": "https://www.mercadopago.com.ar",
+            "linkPago": "https://mpago.la/1cpTCbW",
             "linkMaterial": "#https://drive.google.com/file/d/1DuW_aMS-2CuZ2KiHSi7VyP1CChOWk6om/view?usp=drive_link",
             "linkVideo": "#",
             "aprendizajes": [
