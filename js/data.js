@@ -59,7 +59,7 @@ const SITE_DATA = {
         "titulo": "Comunidad Consciente",
         "subtitulo": "Transformá tu vida dedicando un momento para vos cada semana.",
         "descripcion": "No necesitás experiencia previa. Te acompaño con herramientas prácticas, ejercicios de reflexión y una red que te impulsa a crecer.",
-        "precio": "$XXXX",
+        "precio": "$35.000",
         "beneficios": [
             {
                 "titulo": "Gestión de Emociones",
