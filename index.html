@@ -102,68 +102,8 @@
             <p class="text-purple-800/70">Herramientas prácticas para tu autoconocimiento.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <!-- Curso 1 -->
-            <a href="./curso-gestion.html" onclick="window.location.href='./curso-gestion.html';"
-                class="group cursor-pointer bg-[#ece1ef] border border-purple-200 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
-                <div
-                    class="overflow-hidden mb-5 rounded-xl border border-purple-100 shadow-sm bg-white relative flex justify-center items-center h-64 pointer-events-none">
-                    <img src="curso_gestion.png" alt="Gestión Emocional"
-                        class="max-w-full max-h-full object-contain p-2 group-hover:scale-105 transition duration-500">
-                </div>
-                <h3 class="text-xl mb-2 text-purple-950 font-bold pointer-events-none">Gestión Emocional</h3>
-                <p class="text-sm text-purple-950/80 mb-6 font-medium pointer-events-none">Aprendé a identificar y
-                    transformar tus emociones
-                    en aliados.</p>
-
-                <div class="mt-auto border-t border-purple-300/50 pt-5 pointer-events-none">
-                    <span class="block text-xl font-bold text-purple-950 mb-4">$XXXX ARS</span>
-                    <span
-                        class="block w-full text-center bg-purple-900 border border-purple-900 text-white py-3 rounded-lg text-xs uppercase font-bold group-hover:bg-[#b5e4ca] group-hover:border-[#b5e4ca] group-hover:text-purple-950 transition-colors duration-300 shadow-sm">Ver
-                        Detalles</span>
-                </div>
-            </a>
-
-            <!-- Curso 2 -->
-            <a href="./curso-liderazgo.html" onclick="window.location.href='./curso-liderazgo.html';"
-                class="group cursor-pointer bg-[#ece1ef] border border-purple-200 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
-                <div
-                    class="overflow-hidden mb-5 rounded-xl border border-purple-100 shadow-sm bg-white relative flex justify-center items-center h-64 pointer-events-none">
-                    <img src="curso_liderazgo.png" alt="Liderazgo Consciente"
-                        class="max-w-full max-h-full object-contain p-2 group-hover:scale-105 transition duration-500">
-                </div>
-                <h3 class="text-xl mb-2 text-purple-950 font-bold pointer-events-none">Liderazgo Consciente</h3>
-                <p class="text-sm text-purple-950/80 mb-6 font-medium pointer-events-none">Transformá tu forma de
-                    liderar proyectos y
-                    personas.</p>
-
-                <div class="mt-auto border-t border-purple-300/50 pt-5 pointer-events-none">
-                    <span class="block text-xl font-bold text-purple-950 mb-4">$XXXX ARS</span>
-                    <span
-                        class="block w-full text-center bg-purple-900 border border-purple-900 text-white py-3 rounded-lg text-xs uppercase font-bold group-hover:bg-[#b5e4ca] group-hover:border-[#b5e4ca] group-hover:text-purple-950 transition-colors duration-300 shadow-sm">Ver
-                        Detalles</span>
-                </div>
-            </a>
-
-            <!-- Curso 3 -->
-            <a href="./curso-comunicacion.html" onclick="window.location.href='./curso-comunicacion.html';"
-                class="group cursor-pointer bg-[#ece1ef] border border-purple-200 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
-                <div
-                    class="overflow-hidden mb-5 rounded-xl border border-purple-100 shadow-sm bg-white relative flex justify-center items-center h-64 pointer-events-none">
-                    <img src="curso_comunicacion.png" alt="Comunicación Asertiva"
-                        class="max-w-full max-h-full object-contain p-2 group-hover:scale-105 transition duration-500">
-                </div>
-                <h3 class="text-xl mb-2 text-purple-950 font-bold pointer-events-none">Comunicación Asertiva</h3>
-                <p class="text-sm text-purple-950/80 mb-6 font-medium pointer-events-none">Mejorá tus vínculos a través
-                    de la palabra.</p>
-
-                <div class="mt-auto border-t border-purple-300/50 pt-5 pointer-events-none">
-                    <span class="block text-xl font-bold text-purple-950 mb-4">$XXXX ARS</span>
-                    <span
-                        class="block w-full text-center bg-purple-900 border border-purple-900 text-white py-3 rounded-lg text-xs uppercase font-bold group-hover:bg-[#b5e4ca] group-hover:border-[#b5e4ca] group-hover:text-purple-950 transition-colors duration-300 shadow-sm">Ver
-                        Detalles</span>
-                </div>
-            </a>
+        <div id="cursos-container" class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <!-- Renderizado dinamicamente desde data.js -->
         </div>
     </section>
 
@@ -180,6 +120,25 @@
         </div>
     </footer>
 
+    <script src="js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('cursos-container');
+            container.innerHTML = SITE_DATA.cursos.map(curso => `
+                <a href="./curso.html?id=${curso.id}" class="group cursor-pointer bg-[#ece1ef] border border-purple-200 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                    <div class="overflow-hidden mb-5 rounded-xl border border-purple-100 shadow-sm bg-white relative flex justify-center items-center h-64">
+                        <img src="${curso.imagen}" alt="${curso.titulo}" class="max-w-full max-h-full object-contain p-2 group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h3 class="text-xl mb-2 text-purple-950 font-bold">${curso.titulo}</h3>
+                    <p class="text-sm text-purple-950/80 mb-6 font-medium">${curso.descripcionCorta}</p>
+                    <div class="mt-auto border-t border-purple-300/50 pt-5">
+                        <span class="block text-xl font-bold text-purple-950 mb-4">${curso.precio}</span>
+                        <span class="block w-full text-center bg-purple-900 border border-purple-900 text-white py-3 rounded-lg text-xs uppercase font-bold group-hover:bg-[#b5e4ca] group-hover:border-[#b5e4ca] group-hover:text-purple-950 transition-colors duration-300 shadow-sm">Ver Detalles</span>
+                    </div>
+                </a>
+            `).join('');
+        });
+    </script>
 </body>
 
 </html>

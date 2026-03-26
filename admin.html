@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Cintia Agostino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+    
+    <div class="bg-purple-950 text-white py-6 shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold">Panel de Administración</h1>
+                <p class="text-purple-300 text-sm">Gestiona los textos y precios de tu web</p>
+            </div>
+            <button onclick="descargarData()" class="bg-[#b5e4ca] text-purple-950 px-6 py-3 rounded-lg font-bold hover:bg-[#92cda9] shadow-sm transition flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                Guardar y Descargar "data.js"
+            </button>
+        </div>
+    </div>
+
+    <!-- Instrucciones -->
+    <div class="max-w-5xl mx-auto px-6 py-6">
+        <div class="bg-blue-50 text-blue-900 border border-blue-200 p-4 rounded-lg text-sm">
+            <p class="font-bold mb-1">📝 ¿Cómo funciona?</p>
+            <p>1. Editá los precios o textos en los formularios de abajo.</p>
+            <p>2. Hacé clic en "Guardar y Descargar data.js". Se te descargará un archivo.</p>
+            <p>3. Agarrá ese archivo y <b>reemplazalo</b> dentro de la carpeta <b>js</b> que está en tu computadora.</p>
+            <p>4. Finalmente, ejecutá el archivo <b>subir-cambios.bat</b> para publicarlo en internet.</p>
+        </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-6 pb-12" id="admin-container">
+        <!-- Renderizado dinamicamente -->
+    </div>
+
+    <script src="js/data.js"></script>
+    <script>
+        function renderAdmin() {
+            const container = document.getElementById('admin-container');
+            container.innerHTML = SITE_DATA.cursos.map((curso, index) => `
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8 hover:shadow-md transition">
+                    <h2 class="text-xl font-bold text-purple-900 mb-6 border-b pb-2">✏️ Curso: ${curso.titulo}</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Título</label>
+                            <input onchange="actualizarDato(${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.titulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Precio en Texto (Ej: $4500 ARS)</label>
+                            <input onchange="actualizarDato(${index}, 'precio', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.precio}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Corta (Aparece en el Inicio)</label>
+                            <input onchange="actualizarDato(${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.descripcionCorta}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Larga (Aparece adentro de la página del curso)</label>
+                            <textarea onchange="actualizarDato(${index}, 'descripcionLarga', this.value)" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2 h-24">${curso.descripcionLarga}</textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Link de Pago (Tu link de MercadoPago, Tienda Nube, etc)</label>
+                            <input onchange="actualizarDato(${index}, 'linkPago', this.value)" type="text" class="w-full border border-gray-300 rounded bg-green-50 p-2" value="${curso.linkPago}">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function actualizarDato(index, campo, valor) {
+            SITE_DATA.cursos[index][campo] = valor;
+        }
+
+        function descargarData() {
+            const contenido = "const SITE_DATA = " + JSON.stringify(SITE_DATA, null, 4) + ";\n";
+            const element = document.createElement('a');
+            const file = new Blob([contenido], {type: 'application/javascript'});
+            element.href = URL.createObjectURL(file);
+            element.download = 'data.js';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAdmin);
+    </script>
+</body>
+</html>
