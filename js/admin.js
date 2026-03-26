@@ -70,37 +70,124 @@
 
         function renderAdmin() {
             const container = document.getElementById('admin-container');
-            container.innerHTML = SITE_DATA.cursos.map((curso, index) => `
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8 hover:shadow-md transition">
-                    <h2 class="text-xl font-bold text-purple-900 mb-6 border-b pb-2">✏️ Curso: ${curso.titulo}</h2>
+            
+            // Sección de Cursos
+            let html = `
+                <div class="flex justify-between items-center mb-8 bg-purple-100 p-6 rounded-xl border border-purple-200">
+                    <div>
+                        <h2 class="text-2xl font-bold text-purple-900">🎓 Gestión de Cursos</h2>
+                        <p class="text-purple-700 text-sm">Agregá, editá o eliminá tus capacitaciones.</p>
+                    </div>
+                    <button onclick="agregarCurso()" class="bg-purple-900 text-white px-5 py-2 rounded-lg font-bold hover:bg-purple-800 transition shadow-sm">+ Nuevo Curso</button>
+                </div>
+            `;
+            
+            html += SITE_DATA.cursos.map((curso, index) => `
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8 hover:shadow-md transition relative group">
+                    <button onclick="eliminarCurso(${index})" class="absolute top-4 right-4 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition">Eliminar</button>
+                    <h2 class="text-xl font-bold text-purple-900 mb-6 border-b pb-2 flex items-center gap-2">
+                        <span class="bg-purple-100 text-purple-900 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">${index + 1}</span>
+                        ${curso.titulo || 'Nuevo Curso'}
+                    </h2>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">ID (interno, sin espacios)</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'id', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.id || ''}">
+                        </div>
+                        <div>
                             <label class="block text-sm font-medium mb-1 text-gray-600">Título</label>
-                            <input onchange="actualizarDato(${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.titulo}">
+                            <input onchange="actualizarDato('cursos', ${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.titulo || ''}">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1 text-gray-600">Precio en Texto</label>
-                            <input onchange="actualizarDato(${index}, 'precio', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.precio}">
+                            <input onchange="actualizarDato('cursos', ${index}, 'precio', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.precio || ''}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Ruta Imagen (img/nombre.png)</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'imagen', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.imagen || 'img/'}">
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Corta</label>
-                            <input onchange="actualizarDato(${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.descripcionCorta}">
+                            <input onchange="actualizarDato('cursos', ${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.descripcionCorta || ''}">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Larga</label>
-                            <textarea onchange="actualizarDato(${index}, 'descripcionLarga', this.value)" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2 h-24">${curso.descripcionLarga}</textarea>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Larga (Usa <br> para saltos)</label>
+                            <textarea onchange="actualizarDato('cursos', ${index}, 'descripcionLarga', this.value)" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2 h-24">${curso.descripcionLarga || ''}</textarea>
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium mb-1 text-gray-600">Link de Pago (MercadoPago, etc)</label>
-                            <input onchange="actualizarDato(${index}, 'linkPago', this.value)" type="text" class="w-full border border-gray-300 rounded bg-green-50 p-2" value="${curso.linkPago}">
+                            <input onchange="actualizarDato('cursos', ${index}, 'linkPago', this.value)" type="text" class="w-full border border-gray-300 rounded bg-green-50 p-2" value="${curso.linkPago || ''}">
                         </div>
                     </div>
                 </div>
             `).join('');
+
+            // Sección de Membresía
+            const m = SITE_DATA.membresia;
+            html += `
+                <div class="mb-8 mt-16 bg-green-50 p-6 rounded-xl border border-green-100">
+                    <h2 class="text-2xl font-bold text-green-900">💎 Gestión de Membresía</h2>
+                    <p class="text-green-700 text-sm">Actualizá los textos y beneficios de tu comunidad.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-20">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Título de Membresía</label>
+                            <input onchange="actualizarMembresia('titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${m.titulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Precio / cuota</label>
+                            <input onchange="actualizarMembresia('precio', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${m.precio}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Subtítulo (Gancho comercial)</label>
+                            <input onchange="actualizarMembresia('subtitulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${m.subtitulo}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción principal</label>
+                            <textarea onchange="actualizarMembresia('descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-24">${m.descripcion}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
         }
 
-        function actualizarDato(index, campo, valor) {
-            SITE_DATA.cursos[index][campo] = valor;
+        function actualizarDato(array, index, campo, valor) {
+            SITE_DATA[array][index][campo] = valor;
+        }
+
+        function actualizarMembresia(campo, valor) {
+            SITE_DATA.membresia[campo] = valor;
+        }
+
+        function agregarCurso() {
+            const nuevo = {
+                "id": "nuevo-curso-" + Date.now(),
+                "titulo": "Nuevo Curso",
+                "descripcionCorta": "Descripción corta aquí...",
+                "descripcionLarga": "Descripción detallada...",
+                "precio": "$XXXX",
+                "imagen": "img/placeholder.png",
+                "linkPago": "#",
+                "aprendizajes": [],
+                "detalles": ["A tu propio ritmo"]
+            };
+            SITE_DATA.cursos.unshift(nuevo);
+            renderAdmin();
+        }
+
+        function eliminarCurso(index) {
+            if(confirm("¿Estás segura de eliminar este curso? No se puede deshacer.")) {
+                SITE_DATA.cursos.splice(index, 1);
+                renderAdmin();
+            }
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem("cintia_admin_auth");
+            location.reload();
         }
 
         async function guardarEnLaNube() {
@@ -117,7 +204,7 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        message: "Actualización de cursos desde el Panel Web",
+                        message: "Expansión de contenido desde Panel Admin",
                         content: base64Content,
                         sha: fileSha 
                     })
@@ -135,11 +222,6 @@
                 ocultarCarga();
                 alert("Hubo un error al intentar publicar: " + error.message);
             }
-        }
-
-        function cerrarSesion() {
-            localStorage.removeItem("cintia_admin_auth");
-            location.reload();
         }
 
         function mostrarCarga(txt) {

@@ -23,7 +23,7 @@ const SITE_DATA = {
             "titulo": "Liderazgo Consciente",
             "descripcionCorta": "Transformá tu forma de liderar proyectos y personas.",
             "descripcionLarga": "El liderazgo tradicional ya no alcanza. Hoy necesitamos líderes consistentes, capaces de coordinar acciones efectivas mientras cuidan los vínculos personales y el entorno emocional del equipo.",
-            "precio": "$12.500 ARS",
+            "precio": "$XXXX ARS",
             "imagen": "img/curso_liderazgo.png",
             "linkPago": "https://www.mercadopago.com.ar",
             "aprendizajes": [
@@ -41,7 +41,7 @@ const SITE_DATA = {
             "titulo": "Comunicación Asertiva",
             "descripcionCorta": "Mejorá tus vínculos a través de la palabra.",
             "descripcionLarga": "Comunicar no es solo hablar; es asegurarte de que el otro escuche lo que querés decir. Vas a aprender a diseñar tus conversaciones para cerrar brechas y construir confianza mutua en cualquier ámbito.",
-            "precio": "$11 UDS",
+            "precio": "$XXXX ARS",
             "imagen": "img/curso_comunicacion.png",
             "linkPago": "https://www.mercadopago.com.ar",
             "aprendizajes": [
@@ -54,5 +54,32 @@ const SITE_DATA = {
                 "Plantillas de conversaciones difíciles"
             ]
         }
-    ]
+    ],
+    "membresia": {
+        "titulo": "Comunidad Consciente",
+        "subtitulo": "Transformá tu vida dedicando un momento para vos cada semana.",
+        "descripcion": "No necesitás experiencia previa. Te acompaño con herramientas prácticas, ejercicios de reflexión y una red que te impulsa a crecer.",
+        "precio": "$XXXX",
+        "beneficios": [
+            {
+                "titulo": "Gestión de Emociones",
+                "descripcion": "Técnicas simples y sostenibles para comprender lo que sentís."
+            },
+            {
+                "titulo": "Autoconocimiento Profundo",
+                "descripcion": "Multiplicá tu bienestar con ejercicios prácticos y acompañamiento grupal."
+            },
+            {
+                "titulo": "Vínculos más Sanos",
+                "descripcion": "Clases y herramientas para mejorar la comunicación en tus relaciones."
+            }
+        ],
+        "itemsIncluidos": [
+            "Acceso libre y rotativo a cursos",
+            "Encuentros grupales mensuales",
+            "Masterclasses con especialistas invitados",
+            "Grupo exclusivo de WhatsApp",
+            "Material descargable y desafíos"
+        ]
+    }
 };
