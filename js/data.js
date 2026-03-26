@@ -5,7 +5,7 @@ const SITE_DATA = {
             "titulo": "Gestión Emocional",
             "descripcionCorta": "Aprendé a identificar y transformar tus emociones en aliados.",
             "descripcionLarga": "En este programa exploraremos el mundo de las emociones desde la perspectiva del Coaching Ontológico. Entenderemos que ninguna emoción es negativa, sino que todas traen un mensaje y nos predisponen a actuar de cierta forma.",
-            "precio": "$5.000 ARS",
+            "precio": "$9.000 ARS",
             "imagen": "curso_gestion.png",
             "linkPago": "https://www.mercadopago.com.ar",
             "aprendizajes": [
