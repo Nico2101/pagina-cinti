@@ -122,6 +122,35 @@
                 </div>
             `).join('');
 
+            // Sección de Sesiones (NUEVO)
+            const s = SITE_DATA.sesiones;
+            html += `
+                <div class="mb-8 mt-16 bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h2 class="text-2xl font-bold text-blue-900">🤝 Sesiones Individuales</h2>
+                    <p class="text-blue-700 text-sm">Gestioná tu propuesta de acompañamiento 1:1.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Título de la Sección</label>
+                            <input onchange="actualizarSesiones('titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${s.titulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Link de WhatsApp</label>
+                            <input onchange="actualizarSesiones('whatsapp', this.value)" type="text" class="w-full border border-gray-300 rounded p-2 text-green-700 font-medium" value="${s.whatsapp}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Subtítulo</label>
+                            <input onchange="actualizarSesiones('subtitulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${s.subtitulo}">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Invitación</label>
+                            <textarea onchange="actualizarSesiones('descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-24">${s.descripcion}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+
             // Sección de Membresía
             const m = SITE_DATA.membresia;
             html += `
@@ -152,16 +181,16 @@
             `;
 
             // Sección Sobre Mí (Pilares)
-            const s = SITE_DATA.sobreMi;
+            const sm = SITE_DATA.sobreMi;
             html += `
-                <div class="mb-8 mt-16 bg-blue-50 p-6 rounded-xl border border-blue-100">
-                    <h2 class="text-2xl font-bold text-blue-900">👩‍💼 Perfil Profesional (Sobre Mí)</h2>
-                    <p class="text-blue-700 text-sm">Editá tus habilidades y pilares profesionales.</p>
+                <div class="mb-8 mt-16 bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h2 class="text-2xl font-bold text-indigo-900">👩‍💼 Perfil Profesional (Sobre Mí)</h2>
+                    <p class="text-indigo-700 text-sm">Editá tus habilidades y pilares profesionales.</p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-6 mb-20">
-                    ${s.pilares.map((p, index) => `
+                    ${sm.pilares.map((p, index) => `
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <label class="block text-xs font-bold text-blue-600 mb-2 uppercase tracking-widest">Habilidad ${index + 1}</label>
+                            <label class="block text-xs font-bold text-indigo-600 mb-2 uppercase tracking-widest">Habilidad ${index + 1}</label>
                             <input onchange="actualizarPilar(${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2 mb-3 font-bold" value="${p.titulo}">
                             <textarea onchange="actualizarPilar(${index}, 'descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-20 text-sm text-gray-600">${p.descripcion}</textarea>
                         </div>
@@ -178,6 +207,10 @@
 
         function actualizarMembresia(campo, valor) {
             SITE_DATA.membresia[campo] = valor;
+        }
+
+        function actualizarSesiones(campo, valor) {
+            SITE_DATA.sesiones[campo] = valor;
         }
 
         function actualizarPilar(index, campo, valor) {
@@ -226,7 +259,7 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        message: "Expansión de pilares profesionales desde Panel Admin",
+                        message: "Actualización de contenidos desde Panel Admin",
                         content: base64Content,
                         sha: fileSha 
                     })

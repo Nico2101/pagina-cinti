@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end">
-            <div class="relative w-full max-w-[350px] group">
+            <div class="relative w-full max-w-[320px] group">
                 <div
                     class="absolute inset-0 bg-[#b5e4ca] rounded-tl-[80px] rounded-br-[80px] rounded-tr-[20px] rounded-bl-[20px] rotate-3 scale-[1.05] -z-10 group-hover:rotate-6 transition-transform duration-700 opacity-80">
                 </div>
@@ -53,12 +53,30 @@
 
     <section id="cursos" class="bg-white pb-20 pt-10 px-8">
         <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-4xl mb-4 text-purple-950">Capacitaciones Online</h2>
+            <h2 class="text-4xl mb-4 text-purple-950 font-serif leading-tight">Capacitaciones Online</h2>
             <p class="text-purple-800/70">Herramientas prácticas para tu autoconocimiento.</p>
         </div>
         <div id="cursos-container" class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <!-- Renderizado dinamicamente desde data.js -->
+            <!-- Dinámico -->
         </div>
+    </section>
+
+    <!-- SECCIÓN SESIONES (NUEVO) -->
+    <section id="sesiones" class="bg-[#f5f0f6] py-24 px-8 border-y border-purple-100 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="text-[#92cda9] font-bold tracking-widest uppercase text-xs mb-4 block">Acompañamiento Personal</span>
+            <h2 id="ses-titulo" class="text-4xl md:text-5xl text-purple-950 font-serif mb-6">Cargando...</h2>
+            <p id="ses-subtitulo" class="text-xl text-purple-900 font-light italic mb-8"></p>
+            <p id="ses-desc" class="text-purple-800/80 mb-12 max-w-2xl mx-auto leading-relaxed"></p>
+            
+            <div id="ses-beneficios" class="grid md:grid-cols-3 gap-6 mb-12">
+                <!-- Dinámico -->
+            </div>
+
+            <a id="ses-cta" href="#" target="_blank" class="inline-block bg-[#b5e4ca] text-purple-950 px-10 py-5 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[#92cda9] hover:shadow-xl hover:-translate-y-1 transition-all">Consultar Disponibilidad</a>
+        </div>
+        <!-- Decoración -->
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white rounded-full opacity-40 blur-3xl"></div>
     </section>
 
     <footer id="main-footer" class="w-full mt-auto"></footer>
@@ -67,20 +85,38 @@
     <script src="js/data.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            if (typeof SITE_DATA === 'undefined') return;
+            
+            // Render Cursos
             const container = document.getElementById('cursos-container');
-            if (container && typeof SITE_DATA !== 'undefined') {
+            if (container) {
                 container.innerHTML = SITE_DATA.cursos.map(curso => `
                 <a href="./curso.html?id=${curso.id}" class="group cursor-pointer bg-[#ece1ef] border border-purple-200 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
                     <div class="overflow-hidden mb-5 rounded-xl border border-purple-100 shadow-sm bg-white relative flex justify-center items-center h-64 pointer-events-none">
                         <img src="${curso.imagen}" alt="${curso.titulo}" class="max-w-full max-h-full object-contain p-2 group-hover:scale-105 transition duration-500">
                     </div>
-                    <h3 class="text-xl mb-2 text-purple-950 font-bold pointer-events-none">${curso.titulo}</h3>
+                    <h3 class="text-xl mb-2 text-purple-950 font-bold pointer-events-none font-serif leading-tight">${curso.titulo}</h3>
                     <p class="text-sm text-purple-950/80 mb-6 font-medium pointer-events-none">${curso.descripcionCorta}</p>
                     <div class="mt-auto border-t border-purple-300/50 pt-5 pointer-events-none">
                         <span class="block text-xl font-bold text-purple-950 mb-4">${curso.precio}</span>
                         <span class="block w-full text-center bg-purple-900 border border-purple-900 text-white py-3 rounded-lg text-xs uppercase font-bold group-hover:bg-[#b5e4ca] group-hover:border-[#b5e4ca] group-hover:text-purple-950 transition-colors duration-300 shadow-sm">Ver Detalles</span>
                     </div>
                 </a>
+                `).join('');
+            }
+
+            // Render Sesiones
+            const s = SITE_DATA.sesiones;
+            if(s) {
+                document.getElementById('ses-titulo').innerText = s.titulo;
+                document.getElementById('ses-subtitulo').innerText = s.subtitulo;
+                document.getElementById('ses-desc').innerText = s.descripcion;
+                document.getElementById('ses-cta').href = s.whatsapp;
+                
+                document.getElementById('ses-beneficios').innerHTML = s.beneficios.map(b => `
+                    <div class="bg-white/50 p-6 rounded-2xl border border-white backdrop-blur-sm">
+                        <p class="text-sm text-purple-900 font-medium">${b}</p>
+                    </div>
                 `).join('');
             }
         });

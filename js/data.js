@@ -11,7 +11,7 @@ const SITE_DATA = {
             "aprendizajes": [
                 "Diferenciar entre emociones pasajeras y estados de ánimo permanentes.",
                 "Herramientas concretas para salir de la resignación o el resentimiento.",
-                "Cómo nuestro propio LinkedIn impacta directamente en lo que sentimos."
+                "Cómo nuestro propio lenguaje impacta directamente en lo que sentimos."
             ],
             "detalles": [
                 "A tu propio ritmo (Acceso de por vida)",
@@ -23,7 +23,7 @@ const SITE_DATA = {
             "titulo": "Liderazgo Consciente",
             "descripcionCorta": "Transformá tu forma de liderar proyectos y personas.",
             "descripcionLarga": "El liderazgo tradicional ya no alcanza. Hoy necesitamos líderes consistentes, capaces de coordinar acciones efectivas mientras cuidan los vínculos personales y el entorno emocional del equipo.",
-            "precio": "$12.500 ARS",
+            "precio": "$XXXX ARS",
             "imagen": "img/curso_liderazgo.png",
             "linkPago": "https://www.mercadopago.com.ar",
             "aprendizajes": [
@@ -41,7 +41,7 @@ const SITE_DATA = {
             "titulo": "Comunicación Asertiva",
             "descripcionCorta": "Mejorá tus vínculos a través de la palabra.",
             "descripcionLarga": "Comunicar no es solo hablar; es asegurarte de que el otro escuche lo que querés decir. Vas a aprender a diseñar tus conversaciones para cerrar brechas y construir confianza mutua en cualquier ámbito.",
-            "precio": "$15.300 ARS",
+            "precio": "$XXXX ARS",
             "imagen": "img/curso_comunicacion.png",
             "linkPago": "https://www.mercadopago.com.ar",
             "aprendizajes": [
@@ -59,7 +59,7 @@ const SITE_DATA = {
         "titulo": "Comunidad Consciente",
         "subtitulo": "Transformá tu vida dedicando un momento para vos cada semana.",
         "descripcion": "No necesitás experiencia previa. Te acompaño con herramientas prácticas, ejercicios de reflexión y una red que te impulsa a crecer.",
-        "precio": "$25.000",
+        "precio": "$XXXX",
         "beneficios": [
             {
                 "titulo": "Gestión de Emociones",
@@ -109,5 +109,16 @@ const SITE_DATA = {
                 "descripcion": "Trabajo profundo en la alineación entre lo que pensamos, sentimos y proyectamos a través del cuerpo."
             }
         ]
+    },
+    "sesiones": {
+        "titulo": "Sesiones de Coaching Individual",
+        "subtitulo": "Un espacio exclusivo para tu transformación.",
+        "descripcion": "Si buscás un acompañamiento personalizado para destrabar una situación específica, mejorar tus vínculos o alcanzar un nuevo nivel de bienestar, las sesiones 1:1 son el camino más directo y profundo.",
+        "beneficios": [
+            "Enfoque 100% en tus desafíos actuales.",
+            "Confidencialidad absoluta y espacio seguro.",
+            "Herramientas aplicables desde la primera sesión."
+        ],
+        "whatsapp": "https://wa.me/541165248554"
     }
 };
