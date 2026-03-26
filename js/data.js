@@ -8,7 +8,7 @@ const SITE_DATA = {
             "precio": "$9.500 ARS",
             "imagen": "img/curso_gestion_v2.png",
             "linkPago": "https://www.mercadopago.com.ar",
-            "linkMaterial": "#",
+            "linkMaterial": "#https://drive.google.com/file/d/1DuW_aMS-2CuZ2KiHSi7VyP1CChOWk6om/view?usp=drive_link",
             "linkVideo": "#",
             "aprendizajes": [
                 "Identificación de disparadores emocionales.",
