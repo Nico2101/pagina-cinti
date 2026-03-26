@@ -5,6 +5,7 @@
         let SITE_DATA = null;
         let fileSha = ""; 
         let isAuthorized = localStorage.getItem("cintia_admin_auth") === "true";
+        let vistaActual = 'cursos';
 
         const _p1 = "ghp_ntR2";
         const _p2 = "hu4NUlhS";
@@ -42,7 +43,7 @@
                     headers: { "Authorization": `token ${getT()}` }
                 });
 
-                if(!response.ok) throw new Error("Contraseña denegada o acceso no autorizado.");
+                if(!response.ok) throw new Error("Acceso denegado o archivo no encontrado.");
 
                 const data = await response.json();
                 fileSha = data.sha;
@@ -52,15 +53,16 @@
                 SITE_DATA = JSON.parse(jsonText);
 
                 localStorage.setItem("cintia_admin_auth", "true");
-                document.getElementById("btn-save").classList.remove("hidden");
-                document.getElementById("btn-logout").classList.remove("hidden");
+                document.getElementById("sidebar").classList.remove("hidden");
+                document.getElementById("sidebar").classList.add("flex");
                 document.getElementById("admin-container").classList.remove("hidden");
-                renderAdmin();
+                
+                cambiarVista('cursos');
                 ocultarCarga();
 
             } catch (error) {
                 ocultarCarga();
-                alert("Acceso Incorrecto: " + error.message);
+                alert("Error de conexión: " + error.message);
                 localStorage.removeItem("cintia_admin_auth");
                 document.getElementById("login-screen").classList.remove("hidden");
             }
@@ -68,221 +70,178 @@
 
         if(isAuthorized) { iniciarSesion(); }
 
-        function renderAdmin() {
-            const container = document.getElementById('admin-container');
+        function cambiarVista(vista) {
+            vistaActual = vista;
             
-            // Sección de Cursos
+            // Actualizar Sidebar UI
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('sidebar-link-active'));
+            document.getElementById(`nav-${vista}`).classList.add('sidebar-link-active');
+            
+            // Títulos
+            const titulos = {
+                'cursos': 'Pestaña: Cursos Online',
+                'sesiones': 'Pestaña: Sesiones Individuales',
+                'membresia': 'Pestaña: Gestión de Membresía',
+                'perfil': 'Pestaña: Sobre Mí (Pilares)'
+            };
+            document.getElementById('view-title').innerText = titulos[vista];
+            
+            renderContenido();
+        }
+
+        function renderContenido() {
+            const container = document.getElementById('view-content');
+            container.innerHTML = '';
+            
+            if (vistaActual === 'cursos') renderCursos(container);
+            if (vistaActual === 'sesiones') renderSesiones(container);
+            if (vistaActual === 'membresia') renderMembresia(container);
+            if (vistaActual === 'perfil') renderPerfil(container);
+        }
+
+        function renderCursos(container) {
             let html = `
-                <div class="flex justify-between items-center mb-8 bg-purple-100 p-6 rounded-xl border border-purple-200">
-                    <div>
-                        <h2 class="text-2xl font-bold text-purple-900">🎓 Gestión de Cursos</h2>
-                        <p class="text-purple-700 text-sm">Agregá, editá o eliminá tus capacitaciones.</p>
-                    </div>
+                <div class="flex justify-between items-center mb-8">
+                    <p class="text-slate-500 text-sm italic">Editá tus cursos actuales o agregá nuevos a la lista.</p>
                     <button onclick="agregarCurso()" class="bg-purple-900 text-white px-5 py-2 rounded-lg font-bold hover:bg-purple-800 transition shadow-sm">+ Nuevo Curso</button>
                 </div>
             `;
-            
             html += SITE_DATA.cursos.map((curso, index) => `
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8 hover:shadow-md transition relative group">
-                    <button onclick="eliminarCurso(${index})" class="absolute top-4 right-4 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition">Eliminar</button>
-                    <h2 class="text-xl font-bold text-purple-900 mb-6 border-b pb-2 flex items-center gap-2">
-                        <span class="bg-purple-100 text-purple-900 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">${index + 1}</span>
-                        ${curso.titulo || 'Nuevo Curso'}
-                    </h2>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8 relative group">
+                    <button onclick="eliminarCurso(${index})" class="absolute top-4 right-4 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition text-xs font-bold uppercase">Eliminar Curso</button>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">ID (interno, sin espacios)</label>
-                            <input onchange="actualizarDato('cursos', ${index}, 'id', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.id || ''}">
+                        <div class="md:col-span-2 border-b pb-4 mb-2">
+                            <label class="block text-xs font-bold text-purple-400 uppercase tracking-widest mb-1">Título del curso</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'titulo', this.value)" type="text" class="w-full text-xl font-bold bg-transparent focus:bg-slate-50 outline-none p-1 border-b border-transparent focus:border-purple-200" value="${curso.titulo || ''}">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Título</label>
-                            <input onchange="actualizarDato('cursos', ${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.titulo || ''}">
+                            <label class="block text-sm font-medium mb-1 text-slate-400">ID (interno)</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'id', this.value)" type="text" class="w-full border border-slate-200 rounded-lg bg-slate-50 p-3 text-sm" value="${curso.id || ''}">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Precio en Texto</label>
-                            <input onchange="actualizarDato('cursos', ${index}, 'precio', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.precio || ''}">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Ruta Imagen (img/nombre.png)</label>
-                            <input onchange="actualizarDato('cursos', ${index}, 'imagen', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.imagen || 'img/'}">
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Precio</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'precio', this.value)" type="text" class="w-full border border-slate-200 rounded-lg bg-slate-50 p-3 text-sm" value="${curso.precio || ''}">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Corta</label>
-                            <input onchange="actualizarDato('cursos', ${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2" value="${curso.descripcionCorta || ''}">
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Descripción Corta (Cards)</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'descripcionCorta', this.value)" type="text" class="w-full border border-slate-200 rounded-lg bg-slate-50 p-3 text-sm" value="${curso.descripcionCorta || ''}">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Larga (Usa &lt;br&gt; para saltos)</label>
-                            <textarea onchange="actualizarDato('cursos', ${index}, 'descripcionLarga', this.value)" class="w-full border border-gray-300 rounded bg-gray-50 focus:bg-white p-2 h-24">${curso.descripcionLarga || ''}</textarea>
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Link de Pago (MercadoPago, etc)</label>
-                            <input onchange="actualizarDato('cursos', ${index}, 'linkPago', this.value)" type="text" class="w-full border border-gray-300 rounded bg-green-50 p-2" value="${curso.linkPago || ''}">
+                            <label class="block text-sm font-medium mb-1 text-slate-400">WhatsApp / Link de Pago</label>
+                            <input onchange="actualizarDato('cursos', ${index}, 'linkPago', this.value)" type="text" class="w-full border border-green-200 rounded-lg bg-green-50 p-3 text-sm text-green-800" value="${curso.linkPago || ''}">
                         </div>
                     </div>
                 </div>
             `).join('');
-
-            // Sección de Sesiones (NUEVO)
-            const s = SITE_DATA.sesiones;
-            html += `
-                <div class="mb-8 mt-16 bg-blue-50 p-6 rounded-xl border border-blue-100">
-                    <h2 class="text-2xl font-bold text-blue-900">🤝 Sesiones Individuales</h2>
-                    <p class="text-blue-700 text-sm">Gestioná tu propuesta de acompañamiento 1:1.</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Título de la Sección</label>
-                            <input onchange="actualizarSesiones('titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${s.titulo}">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Link de WhatsApp</label>
-                            <input onchange="actualizarSesiones('whatsapp', this.value)" type="text" class="w-full border border-gray-300 rounded p-2 text-green-700 font-medium" value="${s.whatsapp}">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Subtítulo</label>
-                            <input onchange="actualizarSesiones('subtitulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${s.subtitulo}">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción Invitación</label>
-                            <textarea onchange="actualizarSesiones('descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-24">${s.descripcion}</textarea>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Sección de Membresía
-            const m = SITE_DATA.membresia;
-            html += `
-                <div class="mb-8 mt-16 bg-green-50 p-6 rounded-xl border border-green-100">
-                    <h2 class="text-2xl font-bold text-green-900">💎 Gestión de Membresía</h2>
-                    <p class="text-green-700 text-sm">Actualizá los textos y beneficios de tu comunidad.</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 mb-8">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Título de Membresía</label>
-                            <input onchange="actualizarMembresia('titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${m.titulo}">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Precio / cuota</label>
-                            <input onchange="actualizarMembresia('precio', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${m.precio}">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Subtítulo (Gancho comercial)</label>
-                            <input onchange="actualizarMembresia('subtitulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2" value="${m.subtitulo}">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium mb-1 text-gray-600">Descripción principal</label>
-                            <textarea onchange="actualizarMembresia('descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-24">${m.descripcion}</textarea>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Sección Sobre Mí (Pilares)
-            const sm = SITE_DATA.sobreMi;
-            html += `
-                <div class="mb-8 mt-16 bg-indigo-50 p-6 rounded-xl border border-indigo-100">
-                    <h2 class="text-2xl font-bold text-indigo-900">👩‍💼 Perfil Profesional (Sobre Mí)</h2>
-                    <p class="text-indigo-700 text-sm">Editá tus habilidades y pilares profesionales.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6 mb-20">
-                    ${sm.pilares.map((p, index) => `
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <label class="block text-xs font-bold text-indigo-600 mb-2 uppercase tracking-widest">Habilidad ${index + 1}</label>
-                            <input onchange="actualizarPilar(${index}, 'titulo', this.value)" type="text" class="w-full border border-gray-300 rounded p-2 mb-3 font-bold" value="${p.titulo}">
-                            <textarea onchange="actualizarPilar(${index}, 'descripcion', this.value)" class="w-full border border-gray-300 rounded p-2 h-20 text-sm text-gray-600">${p.descripcion}</textarea>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            
             container.innerHTML = html;
         }
 
-        function actualizarDato(array, index, campo, valor) {
-            SITE_DATA[array][index][campo] = valor;
+        function renderSesiones(container) {
+            const s = SITE_DATA.sesiones;
+            container.innerHTML = `
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Título de la Sección</label>
+                            <input onchange="actualizarSesiones('titulo', this.value)" type="text" class="w-full border border-slate-200 rounded-lg p-3" value="${s.titulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Subtítulo (Gancho)</label>
+                            <input onchange="actualizarSesiones('subtitulo', this.value)" type="text" class="w-full border border-slate-200 rounded-lg p-3" value="${s.subtitulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Invitación / Descripción</label>
+                            <textarea onchange="actualizarSesiones('descripcion', this.value)" class="w-full border border-slate-200 rounded-lg p-3 h-32">${s.descripcion}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Tu Link de WhatsApp</label>
+                            <input onchange="actualizarSesiones('whatsapp', this.value)" type="text" class="w-full border border-green-200 rounded-lg p-3 text-green-700 font-bold" value="${s.whatsapp}">
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
-        function actualizarMembresia(campo, valor) {
-            SITE_DATA.membresia[campo] = valor;
+        function renderMembresia(container) {
+            const m = SITE_DATA.membresia;
+            container.innerHTML = `
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Título Membresía</label>
+                            <input onchange="actualizarMembresia('titulo', this.value)" type="text" class="w-full border border-slate-200 rounded-lg p-3" value="${m.titulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Precio mensual</label>
+                            <input onchange="actualizarMembresia('precio', this.value)" type="text" class="w-full border border-slate-200 rounded-lg p-3 text-xl font-bold" value="${m.precio}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Subtítulo</label>
+                            <input onchange="actualizarMembresia('subtitulo', this.value)" type="text" class="w-full border border-slate-200 rounded-lg p-3" value="${m.subtitulo}">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-slate-400">Descripción descriptiva</label>
+                            <textarea onchange="actualizarMembresia('descripcion', this.value)" class="w-full border border-slate-200 rounded-lg p-3 h-32">${m.descripcion}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
-        function actualizarSesiones(campo, valor) {
-            SITE_DATA.sesiones[campo] = valor;
+        function renderPerfil(container) {
+            const sm = SITE_DATA.sobreMi;
+            let html = `
+                <div class="flex justify-between items-center mb-8">
+                    <p class="text-slate-500 text-sm italic">Gestioná tus habilidades y pilares que aparecen en "Sobre Mí".</p>
+                    <button onclick="agregarPilar()" class="bg-purple-900 text-white px-5 py-2 rounded-lg font-bold hover:bg-purple-800 transition shadow-sm">+ Agregar Habilidad</button>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 pb-20">
+            `;
+            html += sm.pilares.map((p, index) => `
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative group">
+                    <button onclick="eliminarPilar(${index})" class="absolute top-4 right-4 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition text-[10px] font-bold">X ELIMINAR</button>
+                    <label class="block text-[10px] font-bold text-purple-400 uppercase mb-2">Habilidad ${index + 1}</label>
+                    <input onchange="actualizarPilar(${index}, 'titulo', this.value)" type="text" class="w-full font-bold border-b border-slate-100 focus:border-purple-200 mb-2 outline-none p-1" value="${p.titulo}">
+                    <textarea onchange="actualizarPilar(${index}, 'descripcion', this.value)" class="w-full text-sm text-slate-600 h-20 bg-slate-50 border-none rounded-lg p-2 outline-none focus:ring-1 focus:ring-purple-200">${p.descripcion}</textarea>
+                </div>
+            `).join('');
+            html += `</div>`;
+            container.innerHTML = html;
         }
 
-        function actualizarPilar(index, campo, valor) {
-            SITE_DATA.sobreMi.pilares[index][campo] = valor;
-        }
+        function actualizarDato(array, index, campo, valor) { SITE_DATA[array][index][campo] = valor; }
+        function actualizarMembresia(campo, valor) { SITE_DATA.membresia[campo] = valor; }
+        function actualizarSesiones(campo, valor) { SITE_DATA.sesiones[campo] = valor; }
+        function actualizarPilar(index, campo, valor) { SITE_DATA.sobreMi.pilares[index][campo] = valor; }
 
         function agregarCurso() {
-            const nuevo = {
-                "id": "nuevo-curso-" + Date.now(),
-                "titulo": "Nuevo Curso",
-                "descripcionCorta": "Descripción corta aquí...",
-                "descripcionLarga": "Descripción detallada...",
-                "precio": "$XXXX",
-                "imagen": "img/placeholder.png",
-                "linkPago": "#",
-                "aprendizajes": [],
-                "detalles": ["A tu propio ritmo"]
-            };
-            SITE_DATA.cursos.unshift(nuevo);
-            renderAdmin();
+            SITE_DATA.cursos.unshift({ "id": "nuevo-"+Date.now(), "titulo": "Nuevo Curso", "descripcionCorta": "Resumen...", "precio": "$XXXX", "linkPago": "#", "imagen": "img/placeholder.png", "aprendizajes": [], "detalles": [] });
+            renderContenido();
         }
+        function eliminarCurso(index) { if(confirm("¿Segura?")) { SITE_DATA.cursos.splice(index,1); renderContenido(); } }
 
-        function eliminarCurso(index) {
-            if(confirm("¿Estás segura de eliminar este curso? No se puede deshacer.")) {
-                SITE_DATA.cursos.splice(index, 1);
-                renderAdmin();
-            }
+        function agregarPilar() {
+            SITE_DATA.sobreMi.pilares.push({ "titulo": "Nueva Habilidad", "descripcion": "Explicación breve..." });
+            renderContenido();
         }
+        function eliminarPilar(index) { if(confirm("¿Eliminar esta habilidad?")) { SITE_DATA.sobreMi.pilares.splice(index,1); renderContenido(); } }
 
-        function cerrarSesion() {
-            localStorage.removeItem("cintia_admin_auth");
-            location.reload();
-        }
+        function cerrarSesion() { localStorage.removeItem("cintia_admin_auth"); location.reload(); }
 
         async function guardarEnLaNube() {
-            mostrarCarga("Subiendo actualizaciones al servidor central...");
-            
-            const nuevoContenidoJS = "const SITE_DATA = " + JSON.stringify(SITE_DATA, null, 4) + ";\n";
-            const base64Content = utf8_to_b64(nuevoContenidoJS);
-
+            mostrarCarga("Publicando cambios en la web...");
+            const nuevoJS = "const SITE_DATA = " + JSON.stringify(SITE_DATA, null, 4) + ";\n";
             try {
-                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
-                    method: 'PUT',
-                    headers: {
-                        "Authorization": `token ${getT()}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        message: "Actualización de contenidos desde Panel Admin",
-                        content: base64Content,
-                        sha: fileSha 
-                    })
+                const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+                    method: 'PUT', headers: { "Authorization": `token ${getT()}`, "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: "Actualización integral desde Admin V2", content: utf8_to_b64(nuevoJS), sha: fileSha })
                 });
-
-                if(!response.ok) throw new Error("No se pudo guardar, revisá que el token tenga permisos.");
-                
-                const data = await response.json();
-                fileSha = data.content.sha; 
-
+                if(!res.ok) throw new Error("Error API");
+                const d = await res.json(); fileSha = d.content.sha;
                 ocultarCarga();
-                alert("🎉 ¡Actualización un éxito!\n\nLos cambios ya están viajando a internet. Deberías verlos reflejados en tu página (GitHub.io) en aprox 20 a 30 segundos.");
-
-            } catch(error) {
-                ocultarCarga();
-                alert("Hubo un error al intentar publicar: " + error.message);
-            }
+                alert("✅ ¡Cambios publicados! Se verán en vivo en 30 segundos.");
+            } catch(e) { ocultarCarga(); alert("Error: " + e.message); }
         }
 
-        function mostrarCarga(txt) {
-            document.getElementById("loader-text").innerText = txt;
-            document.getElementById("loader").classList.remove("hidden");
-        }
-        function ocultarCarga() {
-            document.getElementById("loader").classList.add("hidden");
-        }
+        function mostrarCarga(txt) { document.getElementById("loader-text").innerText = txt; document.getElementById("loader").classList.remove("hidden"); }
+        function ocultarCarga() { document.getElementById("loader").classList.add("hidden"); }

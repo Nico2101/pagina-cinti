@@ -3,66 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel en la Nube | Cintia Agostino</title>
+    <title>Cintia Admin | Gestión Centralizada</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { @apply bg-white text-purple-950 shadow-sm border-purple-200; }
+        .sidebar-link-active { background-color: rgba(255,255,255,0.1); border-left: 4px solid #b5e4ca; }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen text-gray-800">
-    
-    <div class="bg-purple-950 text-white py-6 shadow-md sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col md:flex-row">
+
+    <!-- PANTALLA DE LOGIN -->
+    <div id="login-screen" class="fixed inset-0 bg-purple-950 flex items-center justify-center z-50 p-6">
+        <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md text-center border border-purple-100">
+            <div class="mb-6 inline-flex bg-purple-100 p-4 rounded-full text-purple-900">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <h1 class="text-3xl font-bold text-purple-950 mb-2">Acceso Admin</h1>
+            <p class="text-slate-500 mb-8">Ingresá tus credenciales para gestionar tu web.</p>
+            
+            <input type="text" id="admin-user" placeholder="Usuario" class="w-full border border-slate-200 rounded-xl p-4 mb-4 focus:ring-2 focus:ring-purple-500 outline-none transition">
+            <input type="password" id="github-token" placeholder="Contraseña Personal" class="w-full border border-slate-200 rounded-xl p-4 mb-8 focus:ring-2 focus:ring-purple-500 outline-none transition">
+            
+            <button onclick="iniciarSesion()" class="w-full bg-purple-900 text-white py-4 rounded-xl font-bold hover:bg-purple-800 transition shadow-lg flex items-center justify-center gap-2">
+                Ingresar al Panel
+            </button>
+        </div>
+    </div>
+
+    <!-- SIDEBAR NAVEGACIÓN (Solo visible logueado) -->
+    <aside id="sidebar" class="hidden md:flex flex-col w-full md:w-64 bg-purple-950 text-white h-screen sticky top-0 transition-all duration-300 z-40">
+        <div class="p-6 border-b border-white/10">
+            <h2 class="font-bold text-xl tracking-tight">Cintia Admin</h2>
+            <p class="text-xs text-purple-300/60 uppercase mt-1 tracking-widest">Panel de Control</p>
+        </div>
+        
+        <nav class="flex-grow p-4 space-y-2 mt-4">
+            <button onclick="cambiarVista('cursos')" id="nav-cursos" class="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 transition flex items-center gap-3">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Cursos Online</span>
+            </button>
+            <button onclick="cambiarVista('sesiones')" id="nav-sesiones" class="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 transition flex items-center gap-3">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <span>Sesiones 1:1</span>
+            </button>
+            <button onclick="cambiarVista('membresia')" id="nav-membresia" class="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 transition flex items-center gap-3">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                <span>Membresía</span>
+            </button>
+            <button onclick="cambiarVista('perfil')" id="nav-perfil" class="w-full text-left px-4 py-3 rounded-lg hover:bg-white/5 transition flex items-center gap-3">
+                <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <span>Sobre Mí</span>
+            </button>
+        </nav>
+
+        <div class="mt-auto p-4 border-t border-white/10 space-y-2">
+            <button onclick="cerrarSesion()" class="w-full text-left px-4 py-2 text-purple-300 hover:text-white text-xs flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Cerrar Sesión
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="admin-container" class="hidden flex-grow flex flex-col min-h-screen">
+        <!-- Barra Superior fija -->
+        <header class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-30 shadow-sm">
             <div>
-                <h1 class="text-2xl font-bold">Panel de Administración</h1>
-                <p class="text-purple-300 text-sm">Sincronizado directamente con la Nube</p>
+                <h2 id="view-title" class="text-xl font-bold text-slate-800">Cargando...</h2>
             </div>
             <div class="flex items-center gap-4">
-                <button id="btn-logout" onclick="cerrarSesion()" class="text-purple-300 text-xs hover:text-white underline hidden">Cerrar Sesión</button>
-                <button id="btn-save" onclick="guardarEnLaNube()" class="bg-[#b5e4ca] text-purple-950 px-6 py-3 rounded-lg font-bold hover:bg-[#92cda9] shadow-sm transition flex items-center gap-2 hidden">
+                <button id="btn-save" onclick="guardarEnLaNube()" class="bg-[#b5e4ca] text-purple-950 px-6 py-2.5 rounded-full font-bold hover:bg-[#92cda9] shadow-sm transition flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Guardar y Publicar en la Web
+                    Publicar Cambios
                 </button>
             </div>
+        </header>
+
+        <!-- Area de Edición Dinámica -->
+        <div id="view-content" class="p-8 max-w-5xl mx-auto w-full pb-20">
+            <!-- Cargado por JS -->
+        </div>
+    </main>
+
+    <!-- LOADER -->
+    <div id="loader" class="fixed inset-0 bg-purple-950/80 flex items-center justify-center z-[100] hidden backdrop-blur-sm">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-[#b5e4ca] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p id="loader-text" class="text-white font-medium tracking-wide">Procesando...</p>
         </div>
     </div>
 
-    <div class="max-w-5xl mx-auto px-6 py-12" id="app-container">
-        <!-- Pantalla de Login -->
-        <div id="login-screen" class="bg-white p-8 rounded-xl shadow-md border border-gray-200 max-w-sm mx-auto text-center mt-10">
-            <div class="mb-6">
-                <!-- Candado o Icono -->
-                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-purple-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800">Acceso Admin</h2>
-            </div>
-            
-            <div class="space-y-4 text-left">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
-                    <input type="text" id="admin-user" placeholder="Ej: cintia" class="w-full border border-gray-300 rounded p-3 focus:border-purple-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña de Seguridad</label>
-                    <input type="password" id="github-token" placeholder="Tu contraseña secreta..." class="w-full border border-gray-300 rounded p-3 focus:border-purple-500 outline-none">
-                </div>
-                <button onclick="iniciarSesion()" class="w-full bg-purple-900 text-white font-bold py-3 px-4 rounded hover:bg-purple-800 transition mt-6 shadow-sm">Ingresar</button>
-            </div>
-            
-            <p class="text-xs text-gray-500 mt-6">Acceso exclusivo - Solo Administradores</p>
-        </div>
-
-        <!-- Renderizado dinámico de los cursos -->
-        <div id="admin-container" class="hidden"></div>
-    </div>
-
-    <!-- Mensaje Flotante de Carga -->
-    <div id="loader" class="fixed inset-0 bg-black/50 flex justify-center items-center z-50 hidden">
-        <div class="bg-white p-8 rounded-xl shadow-2xl flex flex-col items-center">
-            <svg class="animate-spin h-10 w-10 text-purple-900 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-            <p class="font-bold text-purple-950" id="loader-text">Conectando con la nube...</p>
-        </div>
-    </div>
-
-    <!-- Cargar la inteligencia extraída -->
     <script src="js/admin.js"></script>
 </body>
 </html>
