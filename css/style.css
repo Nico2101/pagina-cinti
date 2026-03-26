@@ -1,8 +1,36 @@
+:root {
+    --brand-aqua: #2ebfac; /* Intense Aqua Green */
+    --brand-aqua-hover: #1f9485;
+    --brand-purple: #3b284e;
+    --brand-light-purple: #f5f0f6;
+}
+
 body { font-family: 'Inter', sans-serif; }
 h1, h2, h3 { font-family: 'Playfair Display', serif; }
-.bg-aesthetic { background-color: #f5f0f6; }
-.btn-accent { background-color: #b5e4ca; color: #3b284e; transition: all 0.3s; }
-.btn-accent:hover { background-color: #92cda9; transform: translateY(-2px); }
+
+.bg-aesthetic { background-color: var(--brand-light-purple); }
+
+.bg-brand-aqua { background-color: var(--brand-aqua); }
+.text-brand-aqua { color: var(--brand-aqua); }
+
+.btn-accent { 
+    background-color: var(--brand-aqua); 
+    color: white; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px 0 rgba(46, 191, 172, 0.3);
+}
+
+.btn-accent:hover { 
+    background-color: var(--brand-aqua-hover); 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(46, 191, 172, 0.4);
+}
+
+.header-glass {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(59, 40, 78, 0.05);
+}
 
 @keyframes bounce-slow {
     0%, 100% { transform: translateY(0); }

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .sidebar-link-active { background-color: rgba(255,255,255,0.1); border-left: 4px solid #b5e4ca; }
+        .sidebar-link-active { background-color: rgba(255,255,255,0.1); border-left: 4px solid #2ebfac; }
     </style>
 </head>
 <body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col md:flex-row overflow-x-hidden">
@@ -81,7 +81,7 @@
                 <h2 id="view-title" class="text-sm md:text-xl font-bold text-slate-800">Cargando...</h2>
             </div>
             <div class="flex items-center gap-2">
-                <button id="btn-save" onclick="guardarEnLaNube()" class="bg-[#b5e4ca] text-purple-950 px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold hover:bg-[#92cda9] shadow-sm transition flex items-center gap-2 text-xs md:text-sm">
+                <button id="btn-save" onclick="guardarEnLaNube()" class="bg-[#2ebfac] text-purple-950 px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold hover:bg-[#1f9485] shadow-sm transition flex items-center gap-2 text-xs md:text-sm">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     <span class="hidden sm:inline">Publicar</span>
                     <span class="sm:hidden">OK</span>
@@ -101,7 +101,7 @@
     <!-- LOADER -->
     <div id="loader" class="fixed inset-0 bg-purple-950/80 flex items-center justify-center z-[200] hidden backdrop-blur-sm">
         <div class="text-center">
-            <div class="w-16 h-16 border-4 border-[#b5e4ca] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div class="w-16 h-16 border-4 border-[#2ebfac] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p id="loader-text" class="text-white font-medium tracking-wide text-xs">Procesando...</p>
         </div>
     </div>

@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="md:w-1/2 w-full space-y-6">
-                <span class="text-[#92cda9] font-bold tracking-widest uppercase text-sm">Curso Online Grabado</span>
+                <span class="text-[#1f9485] font-bold tracking-widest uppercase text-sm">Curso Online Grabado</span>
                 <h1 id="curso-titulo" class="text-4xl md:text-5xl text-purple-950 font-serif leading-tight">Cargando...</h1>
                 <p id="curso-desc-larga" class="text-lg text-purple-800/80 leading-relaxed"></p>
                 
@@ -30,7 +30,7 @@
 
                 <div class="flex flex-col sm:flex-row items-center gap-6">
                     <div id="curso-precio" class="text-3xl font-bold text-purple-950"></div>
-                    <a id="curso-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center bg-purple-900 border border-purple-900 text-white px-10 py-4 rounded-lg uppercase text-sm font-bold hover:bg-[#b5e4ca] hover:border-[#b5e4ca] hover:text-purple-950 transition-colors duration-300 shadow-md">Comprar Curso</a>
+                    <a id="curso-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center bg-purple-900 border border-purple-900 text-white px-10 py-4 rounded-lg uppercase text-sm font-bold hover:bg-[#2ebfac] hover:border-[#2ebfac] hover:text-purple-950 transition-colors duration-300 shadow-md">Comprar Curso</a>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="max-w-4xl mx-auto mt-24 space-y-16">
             <div>
                 <h2 class="text-3xl text-purple-950 font-serif mb-6 flex items-center gap-3">
-                    <span class="bg-[#b5e4ca] w-8 h-1 rounded-full block"></span> ¿Qué vas a aprender?
+                    <span class="bg-[#2ebfac] w-8 h-1 rounded-full block"></span> ¿Qué vas a aprender?
                 </h2>
                 <div class="text-purple-800/80 space-y-4 leading-relaxed text-lg">
                     <ul id="curso-aprendizajes" class="list-none space-y-4 mt-8 bg-[#f5f0f6] p-8 rounded-2xl border border-purple-100">
@@ -74,14 +74,14 @@
 
             document.getElementById('curso-detalles').innerHTML = curso.detalles.map(d => `
                 <div class="flex items-center gap-4">
-                    <svg class="w-6 h-6 text-[#92cda9]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg class="w-6 h-6 text-[#1f9485]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span class="text-sm font-medium text-purple-900">${d}</span>
                 </div>
             `).join('');
 
             document.getElementById('curso-aprendizajes').innerHTML = curso.aprendizajes.map(a => `
                 <li class="flex items-start gap-3">
-                    <span class="text-[#92cda9] font-bold text-xl leading-none">•</span>
+                    <span class="text-[#1f9485] font-bold text-xl leading-none">•</span>
                     <span>${a}</span>
                 </li>
             `).join('');

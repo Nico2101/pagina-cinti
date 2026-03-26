@@ -31,7 +31,7 @@
             <!-- Pricing / Subscription Card -->
             <div class="w-full md:w-1/2 flex justify-center mt-12 md:mt-0">
                 <div class="bg-white rounded-tl-[60px] rounded-br-[60px] rounded-tr-[20px] rounded-bl-[20px] shadow-xl p-8 md:p-12 w-full max-w-sm border border-purple-100 relative">
-                    <div class="absolute -top-4 -right-2 bg-[#b5e4ca] text-purple-950 text-[10px] md:text-xs uppercase font-bold px-4 py-1.5 rounded-full shadow-md transform rotate-3 z-10">
+                    <div class="absolute -top-4 -right-2 bg-[#2ebfac] text-purple-950 text-[10px] md:text-xs uppercase font-bold px-4 py-1.5 rounded-full shadow-md transform rotate-3 z-10">
                         ¡Lanzamiento!
                     </div>
                     <h3 class="text-xl md:text-2xl text-center text-purple-950 mb-2 font-serif">Suscripción Mensual</h3>
@@ -45,7 +45,7 @@
                         <span id="mem-precio" class="text-3xl font-bold text-purple-950"></span> <span class="text-purple-800/60 text-xs uppercase tracking-wider">/ mes</span>
                     </div>
 
-                    <a id="mem-cta" href="#" target="_blank" class="block w-full text-center bg-[#b5e4ca] text-purple-950 py-4 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[#92cda9] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">¡Quiero Sumarme!</a>
+                    <a id="mem-cta" href="#" target="_blank" class="block w-full text-center bg-[#2ebfac] text-purple-950 py-4 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[#1f9485] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">¡Quiero Sumarme!</a>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
 
             document.getElementById('mem-beneficios').innerHTML = m.beneficios.map(b => `
                 <div class="flex items-start">
-                    <svg class="w-5 h-5 text-[#92cda9] mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <svg class="w-5 h-5 text-[#1f9485] mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     <div>
                         <h4 class="font-bold text-purple-900 text-base md:text-lg">${b.titulo}</h4>
                         <p class="text-xs md:text-sm text-purple-800/70 leading-relaxed">${b.descripcion}</p>
@@ -82,7 +82,7 @@
 
             document.getElementById('mem-items').innerHTML = m.itemsIncluidos.map(item => `
                 <li class="flex items-center text-xs md:text-sm text-purple-900">
-                    <svg class="w-4 h-4 text-[#b5e4ca] mr-3 font-bold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <svg class="w-4 h-4 text-[#2ebfac] mr-3 font-bold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     ${item}
                 </li>
             `).join('');
