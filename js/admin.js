@@ -48,7 +48,7 @@
                 fileSha = data.sha;
 
                 const scriptContent = b64_to_utf8(data.content);
-                const jsonText = scriptContent.replace("const SITE_DATA = ", "").replace(/;\s*$/, "");
+                const jsonText = scriptContent.substring(scriptContent.indexOf('{'), scriptContent.lastIndexOf('}') + 1);
                 SITE_DATA = JSON.parse(jsonText);
 
                 localStorage.setItem("cintia_admin_auth", "true");
