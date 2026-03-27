@@ -30,66 +30,95 @@
     <div id="admin-dashboard" class="hidden w-full flex flex-col md:flex-row min-h-screen overflow-hidden">
         
         <!-- SIDEBAR -->
-        <aside class="w-full md:w-72 bg-purple-950 text-white flex flex-col p-8 space-y-10 flex-shrink-0">
-            <div class="flex items-center gap-3 border-b border-white/10 pb-6">
-                <div class="w-10 h-10 bg-brand-aqua rounded-xl flex items-center justify-center font-bold text-xl">CA</div>
-                <h2 class="font-bold tracking-tight">Cintia Admin</h2>
+        <aside class="w-full md:w-80 bg-[#1a0b2e] text-white flex flex-col p-8 space-y-12 flex-shrink-0 relative z-20 shadow-2xl">
+            <div class="flex items-center gap-4 border-b border-white/10 pb-8">
+                <div class="w-12 h-12 bg-brand-aqua rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shadow-brand-aqua/20">CA</div>
+                <div>
+                    <h2 class="font-bold text-lg leading-none">Cintia Agostino</h2>
+                    <p class="text-xs text-brand-aqua font-medium tracking-widest mt-1 uppercase">Admin Panel</p>
+                </div>
             </div>
             
-            <nav class="flex-grow space-y-4">
-                <button onclick="showTab('dashboard')" class="nav-btn w-full text-left p-4 rounded-xl transition-all flex items-center gap-4 hover:bg-white/10" id="btn-dashboard">
-                    <span class="text-xs font-bold uppercase tracking-widest">General</span>
+            <nav class="flex-grow space-y-3">
+                <button onclick="showTab('dashboard')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-dashboard">
+                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em]">Dashboard</span>
                 </button>
-                <button onclick="showTab('cursos')" class="nav-btn w-full text-left p-4 rounded-xl transition-all flex items-center gap-4 hover:bg-white/10" id="btn-cursos">
-                    <span class="text-xs font-bold uppercase tracking-widest">Cursos Online</span>
+                <button onclick="showTab('cursos')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-cursos">
+                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em]">Cursos Online</span>
                 </button>
-                <button onclick="showTab('membresia')" class="nav-btn w-full text-left p-4 rounded-xl transition-all flex items-center gap-4 hover:bg-white/10" id="btn-membresia">
-                    <span class="text-xs font-bold uppercase tracking-widest">Membresía</span>
+                <button onclick="showTab('membresia')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-membresia">
+                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em]">Membresía</span>
                 </button>
-                <button onclick="showTab('sesiones')" class="nav-btn w-full text-left p-4 rounded-xl transition-all flex items-center gap-4 hover:bg-white/10" id="btn-sesiones">
-                    <span class="text-xs font-bold uppercase tracking-widest">Sesiones 1:1</span>
+                <button onclick="showTab('sesiones')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-sesiones">
+                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em]">Sesiones 1:1</span>
                 </button>
             </nav>
 
-            <button onclick="saveAll()" class="w-full bg-brand-aqua text-white p-4 rounded-xl font-bold shadow-xl hover:bg-[#25a898] transition-all transform active:scale-95 flex items-center justify-center gap-2">
-                Publicar Cambios
-            </button>
+            <div class="space-y-4 pt-8 border-t border-white/10">
+                <button onclick="saveAll()" class="w-full bg-brand-aqua text-white p-5 rounded-2xl font-bold shadow-xl shadow-brand-aqua/20 hover:bg-[#25a898] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                    Publicar Web
+                </button>
+                <button onclick="downloadBackup()" class="w-full bg-white/5 text-white/60 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest hover:text-white hover:bg-white/10 transition-all">
+                    Respaldar Datos
+                </button>
+            </div>
         </aside>
 
         <!-- CONTENT AREA -->
-        <main class="flex-grow p-6 md:p-12 overflow-y-auto bg-slate-50">
+        <main class="flex-grow p-8 md:p-16 overflow-y-auto bg-[#fdfbff]">
             <!-- HEADER INFO -->
-            <div class="flex justify-between items-center mb-10 border-b border-slate-200 pb-8">
+            <div class="flex justify-between items-end mb-16 border-b border-slate-100 pb-10">
                 <div>
-                    <h1 id="tab-title" class="text-4xl font-serif text-purple-950 mb-2">Bienvenida</h1>
-                    <p class="text-slate-500">¿Qué vamos a actualizar hoy?</p>
+                    <h1 id="tab-title" class="text-5xl font-serif text-[#1a0b2e] mb-3">Panel de Control</h1>
+                    <p class="text-slate-400 font-medium italic">Gestioná cada detalle de tu presencia profesional.</p>
                 </div>
-                <div id="save-status" class="hidden px-6 py-2 bg-green-100 text-green-700 rounded-lg text-sm font-bold animate-fade-in">¡Cambios guardados!</div>
+                <div id="save-status" class="hidden px-8 py-3 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold border border-emerald-100 animate-bounce">
+                    ✨ ¡Cambios Generados!
+                </div>
             </div>
 
             <!-- TAB: DASHBOARD -->
-            <section id="tab-dashboard" class="tab-content space-y-8">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-                        <h4 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Total Cursos</h4>
-                        <p class="text-4xl font-serif text-purple-950" id="stats-cursos">0</p>
+            <section id="tab-dashboard" class="tab-content space-y-12">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-50 relative overflow-hidden group hover:shadow-xl hover:shadow-purple-900/5 transition-all">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-aqua/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+                        <h4 class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-4">Cursos Activos</h4>
+                        <p class="text-6xl font-serif text-[#1a0b2e]" id="stats-cursos">0</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[#1a0b2e] p-12 rounded-[3.5rem] text-white space-y-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-12 opacity-10">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-serif">Instrucciones de Publicación</h3>
+                    <div class="space-y-4 text-white/70 max-w-2xl text-lg leading-relaxed">
+                        <p>1. Modificá cualquier texto o lista en las pestañas laterales.</p>
+                        <p>2. Al finalizar, presioná <strong class="text-brand-aqua uppercase tracking-widest text-sm">Publicar Web</strong>.</p>
+                        <p>3. Se descargará el archivo <code class="bg-white/10 px-2 rounded">data.js</code>.</p>
+                        <p>4. Reemplazá el archivo actual en la carpeta <code class="bg-white/10 px-2 rounded">js/</code> y subí los cambios a GitHub.</p>
                     </div>
                 </div>
             </section>
 
             <!-- TAB: CURSOS -->
-            <section id="tab-cursos" class="tab-content hidden space-y-6">
-                <div id="admin-cursos-list" class="grid lg:grid-cols-2 gap-6"></div>
+            <section id="tab-cursos" class="tab-content hidden space-y-10">
+                <div id="admin-cursos-list" class="space-y-10"></div>
             </section>
 
             <!-- TAB: MEMBRESIA -->
-            <section id="tab-membresia" class="tab-content hidden space-y-6">
-                <div id="admin-membresia-form" class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100"></div>
+            <section id="tab-membresia" class="tab-content hidden space-y-10">
+                <div id="admin-membresia-form" class="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50"></div>
             </section>
 
             <!-- TAB: SESIONES -->
-            <section id="tab-sesiones" class="tab-content hidden space-y-6">
-                <div id="admin-sesiones-form" class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100"></div>
+            <section id="tab-sesiones" class="tab-content hidden space-y-10">
+                <div id="admin-sesiones-form" class="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50"></div>
             </section>
         </main>
     </div>
