@@ -23,11 +23,11 @@ const headerHTML = `
     </button>
 
     <!-- MENU MOBILE OVERLAY -->
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-white/98 z-[110] flex flex-col items-center justify-start pt-32 space-y-8 text-2xl font-bold text-purple-950 transition-all duration-300">
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[110] flex flex-col items-center justify-start pt-32 space-y-10 text-2xl font-bold text-purple-950 transition-all duration-300">
         <a href="index.html" class="hover:text-brand-aqua">Inicio</a>
         <a href="sobre-mi.html" class="hover:text-brand-aqua">Sobre Mí</a>
         <a href="membresia.html" class="hover:text-brand-aqua">Membresía</a>
-        <a href="index.html#sesiones" class="bg-brand-aqua text-white px-10 py-4 rounded-full shadow-lg">Sesiones 1:1</a>
+        <a href="index.html#sesiones" class="bg-brand-aqua text-white px-10 py-5 rounded-full shadow-lg">Sesiones 1:1</a>
     </div>
 </nav>
 `;
