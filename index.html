@@ -6,54 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cintia Agostino | Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=7">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 
 <body class="bg-aesthetic text-purple-950 flex flex-col min-h-screen overflow-x-hidden">
 
     <header id="main-header" class="w-full relative z-50"></header>
 
-    <!-- HERO SECTION CON BANNER DECORATIVO -->
+    <!-- HERO SECTION -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 md:pt-24">
-        <!-- Banner de fondo decorativo -->
         <div class="absolute top-[20%] left-0 w-full h-[60%] bg-[#2ebfac]/5 skew-y-[-2deg] -z-10"></div>
         <div class="absolute top-[10%] -right-20 w-80 h-80 bg-purple-100 rounded-full blur-3xl opacity-30 -z-10 animate-pulse"></div>
         
         <div class="max-w-7xl mx-auto px-8 md:px-20 w-full flex flex-col md:flex-row items-center gap-12 md:gap-20">
-            <!-- Text Content -->
-            <div class="w-full md:w-3/5 space-y-8 text-center md:text-left order-2 md:order-1 relative z-10">
-                <div class="inline-flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-purple-100">
-                   <span class="w-2 h-2 bg-brand-aqua rounded-full animate-ping"></span>
-                   <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-purple-950/60">Diseño de Futuros Posibles</span>
-                </div>
-                
-                <h1 class="text-5xl md:text-8xl text-purple-950 leading-[1.1] font-serif">Diseñá la vida<br>
-                    <span class="text-brand-aqua">que querés habitar.</span></h1>
-                
-                <p class="text-lg md:text-2xl text-purple-900/70 font-light max-w-xl mx-auto md:mx-0 leading-relaxed">
-                    Explorá un proceso de transformación profunda <br class="hidden lg:block"> y encontrá la coherencia entre lo que sentís, pensás y hacés.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-center md:justify-start">
-                    <a href="#cursos"
-                        class="btn-accent px-12 py-5 rounded-sm uppercase text-xs font-bold tracking-widest text-center shadow-2xl hover:scale-105 transition-all">Explorar Capacitaciones</a>
-                    <a href="#sesiones"
-                        class="bg-white/50 backdrop-blur-sm border-2 border-purple-100 px-12 py-5 rounded-sm uppercase text-xs font-bold tracking-widest hover:border-brand-aqua hover:bg-white transition-all text-center">Sesiones 1:1</a>
+            <div class="w-full md:w-1/2 space-y-8 text-center md:text-left z-10">
+                <div class="inline-block px-4 py-2 bg-brand-aqua/10 text-brand-aqua rounded-full text-xs font-bold uppercase tracking-widest mb-4">Coaching Ontológico Profesional</div>
+                <h1 class="text-5xl md:text-7xl font-serif text-purple-950 leading-tight">Desarrollá tu <span class="text-brand-aqua">potencial</span> real</h1>
+                <p class="text-lg md:text-xl text-purple-900/70 max-w-xl leading-relaxed">Acompaño a personas y equipos a decidir con claridad y gestionar con excelencia.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+                    <a href="#cursos" class="bg-brand-aqua text-white px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#25a898] transition-all transform hover:-translate-y-1 text-center">Ver Programas</a>
+                    <a href="sobre-mi.html" class="border-2 border-purple-950/20 text-purple-950 px-10 py-5 rounded-full font-bold hover:bg-purple-950 hover:text-white transition-all text-center">Conoceme</a>
                 </div>
             </div>
+            <div class="w-full md:w-1/2 relative lg:pl-10">
+                <img src="img/cintia agostino img.jpg" alt="Cintia Agostino" class="rounded-3xl shadow-2xl w-full max-w-lg mx-auto transform hover:scale-[1.02] transition-transform duration-700 relative z-10">
+            </div>
+        </div>
+    </section>
 
-            <!-- Image Composition -->
-            <div class="w-full md:w-2/5 flex justify-center md:justify-end order-1 md:order-2 relative">
-                <div class="relative w-full max-w-[300px] md:max-w-[380px] group">
-                    <!-- Marcos Decorativos -->
-                    <div class="absolute -inset-4 border-2 border-brand-aqua/20 rounded-tl-[100px] rounded-br-[100px] -z-10 rotate-6 group-hover:rotate-0 transition-transform duration-700"></div>
-                    <div class="absolute inset-4 bg-white shadow-2xl rounded-tl-[100px] rounded-br-[100px] -z-10 -rotate-3 group-hover:rotate-0 transition-transform duration-500"></div>
-                    
-                    <img src="img/cintia%20agostino%20img.jpg" alt="Cintia Agostino"
-                        class="w-full h-auto aspect-[4/5] object-cover rounded-tl-[100px] rounded-br-[100px] shadow-2xl group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500 relative z-20">
-                    
-                    <!-- Floating Badge -->
-                    <div class="absolute -bottom-6 -left-6 bg-purple-95
+    <!-- CURSOS SECTION -->
+    <section id="cursos" class="py-32 px-8 bg-white/30">
+        <div class="max-w-7xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-serif text-purple-950 mb-6">Programas y Cursos</h2>
+            <p class="text-purple-900/60 max-w-2xl mx-auto">Propuestas diseñadas para transformar tus habilidades y mentalidad.</p>
+        </div>
+        <div id="cursos-grid" class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10"></div>
+    </section>
+
+    <!-- SESIONES SECTION -->
+    <section id="sesiones" class="py-32 px-8 bg-purple-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
+            <div class="w-full md:w-1/2 space-y-8 text-white">
+                <h2 id="ses-titulo" class="text-4xl md:text-6xl font-serif leading-tight"></h2>
+                <h3 id="ses-subtitulo" class="text-brand-aqua text-xl font-bold tracking-widest uppercase"></h3>
+                <p id="ses-desc" class="text-lg text-purple-100/70 leading-relaxed"></p>
+                <div id="ses-beneficios" class="grid sm:grid-cols-2 gap-4"></div>
+                <div class="pt-8">
+                    <a id="ses-cta" href="#" class="bg-brand-aqua text-white px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#25a898] transition-all inline-block">Reservar Sesión</a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <div class="aspect-square bg-gradient-to-br from-brand-aqua/20 to-purple-800/40 rounded-full border border-white/10 p-10 backdrop-blur-3xl animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="main-footer"></footer>
+
+    <script src="js/data.js?v=8"></script>
+    <script src="js/components.js?v=8"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Cursos
+            const grid = document.getElementById('cursos-grid');
+            grid.innerHTML = SITE_DATA.cursos.map(c => `
+                <div class="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-purple-50">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="${c.imagen}" alt="${c.titulo}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-10 space-y-4">
+                        <h3 class="text-2xl font-serif text-purple-950">${c.titulo}</h3>
+                        <p class="text-sm text-purple-900/60 leading-relaxed">${c.descripcionCorta}</p>
+                        <a href="curso.html?id=${c.id}" class="inline-block text-brand-aqua font-bold border-b-2 border-brand-aqua/30 hover:border-brand-aqua py-1 transition-all">Ver detalles</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Sesiones
+            const s = SITE_DATA.sesiones;
+            if(s) {
+                document.getElementById('ses-titulo').innerText = s.titulo;
+                document.getElementById('ses-subtitulo').innerText = s.subtitulo;
+                document.getElementById('ses-desc').innerText = s.descripcion;
+                document.getElementById('ses-cta').href = s.whatsapp;
+                document.getElementById('ses-beneficios').innerHTML = s.beneficios.map(b => `
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 hover:border-brand-aqua/40 transition-colors">
+                        <p class="text-sm text-purple-100/90">${b}</p>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+</html>
