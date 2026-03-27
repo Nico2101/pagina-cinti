@@ -30,7 +30,8 @@
                 </div>
             </div>
             <div class="w-full md:w-1/2 relative lg:pl-10">
-                <img src="img/cintia agostino img.jpg" alt="Cintia Agostino" class="rounded-3xl shadow-2xl w-full max-w-lg mx-auto transform hover:scale-[1.02] transition-transform duration-700 relative z-10">
+                <div class="absolute -inset-4 bg-brand-aqua/20 rounded-[3rem] blur-2xl -z-10 animate-pulse"></div>
+                <img src="img/hero-new.jpg" alt="Cintia Agostino" class="rounded-[2.5rem] shadow-2xl w-full max-w-lg mx-auto transform hover:scale-[1.02] transition-transform duration-700 relative z-10 border-8 border-white">
             </div>
         </div>
     </section>
@@ -51,6 +52,7 @@
                 <h2 id="ses-titulo" class="text-4xl md:text-6xl font-serif leading-tight"></h2>
                 <h3 id="ses-subtitulo" class="text-brand-aqua text-xl font-bold tracking-widest uppercase"></h3>
                 <p id="ses-desc" class="text-lg text-purple-100/70 leading-relaxed"></p>
+                <div id="ses-precio" class="text-3xl font-serif text-brand-aqua"></div>
                 <div id="ses-beneficios" class="grid sm:grid-cols-2 gap-4"></div>
                 <div class="pt-8">
                     <a id="ses-cta" href="#" class="bg-brand-aqua text-white px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#25a898] transition-all inline-block">Reservar Sesión</a>
@@ -76,6 +78,7 @@
                 <div class="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-purple-50">
                     <div class="relative overflow-hidden h-64">
                         <img src="${c.imagen}" alt="${c.titulo}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur px-4 py-2 rounded-full text-brand-aqua font-bold shadow-sm">${c.precio}</div>
                     </div>
                     <div class="p-10 space-y-4">
                         <h3 class="text-2xl font-serif text-purple-950">${c.titulo}</h3>
@@ -91,6 +94,7 @@
                 document.getElementById('ses-titulo').innerText = s.titulo;
                 document.getElementById('ses-subtitulo').innerText = s.subtitulo;
                 document.getElementById('ses-desc').innerText = s.descripcion;
+                document.getElementById('ses-precio').innerText = s.precio;
                 document.getElementById('ses-cta').href = s.whatsapp;
                 document.getElementById('ses-beneficios').innerHTML = s.beneficios.map(b => `
                     <div class="bg-white/5 p-4 rounded-xl border border-white/10 hover:border-brand-aqua/40 transition-colors">

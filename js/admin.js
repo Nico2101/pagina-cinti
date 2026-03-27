@@ -63,9 +63,15 @@ function renderSesiones() {
     const container = document.getElementById('admin-sesiones-form');
     container.innerHTML = `
         <div class="space-y-6">
-            <div class="space-y-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-slate-400">Título Principal</label>
-                <input type="text" value="${s.titulo}" onchange="updateSesion('titulo', this.value)" class="w-full p-4 border rounded-xl">
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400">Título Principal</label>
+                    <input type="text" value="${s.titulo}" onchange="updateSesion('titulo', this.value)" class="w-full p-4 border rounded-xl">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400">Precio</label>
+                    <input type="text" value="${s.precio}" onchange="updateSesion('precio', this.value)" class="w-full p-4 border rounded-xl">
+                </div>
             </div>
             <div class="space-y-2">
                 <label class="text-xs font-bold uppercase tracking-widest text-slate-400">Descripción</label>

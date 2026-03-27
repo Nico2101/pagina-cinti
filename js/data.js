@@ -87,6 +87,7 @@ const SITE_DATA = {
         "titulo": "Sesiones de Coaching Individual",
         "subtitulo": "Un espacio exclusivo para tu transformación.",
         "descripcion": "Si buscás un acompañamiento personalizado para destrabar una situación específica, mejorar tus vínculos o alcanzar un nuevo nivel de bienestar, las sesiones 1:1 son el camino más directo y profundo.",
+        "precio": "$12.000 ARS / sesión",
         "beneficios": [
             "Enfoque 100% en tus desafíos actuales.",
             "Confidencialidad absoluta y espacio seguro.",
