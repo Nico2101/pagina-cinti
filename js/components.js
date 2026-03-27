@@ -21,15 +21,16 @@ const headerHTML = `
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
     </button>
-
-    <!-- MENU MOBILE OVERLAY -->
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[999] flex flex-col items-center justify-start pt-32 space-y-12 text-2xl font-bold text-purple-950 transition-all duration-300" style="background-color: white !important; opacity: 1 !important;">
-        <a href="index.html" class="hover:text-brand-aqua">Inicio</a>
-        <a href="sobre-mi.html" class="hover:text-brand-aqua">Sobre Mí</a>
-        <a href="membresia.html" class="hover:text-brand-aqua">Membresía</a>
-        <a href="index.html#sesiones" class="bg-brand-aqua text-white px-10 py-5 rounded-full shadow-lg">Sesiones 1:1</a>
-    </div>
 </nav>
+`;
+
+const mobileMenuHTML = `
+<div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[999] flex flex-col items-center justify-start pt-32 space-y-12 text-2xl font-bold text-purple-950 transition-all duration-300" style="background-color: #ffffff !important; opacity: 1 !important; visibility: visible !important;">
+    <a href="index.html" class="hover:text-brand-aqua">Inicio</a>
+    <a href="sobre-mi.html" class="hover:text-brand-aqua">Sobre Mí</a>
+    <a href="membresia.html" class="hover:text-brand-aqua">Membresía</a>
+    <a href="index.html#sesiones" class="bg-brand-aqua text-white px-10 py-5 rounded-full shadow-lg">Sesiones 1:1</a>
+</div>
 `;
 
 const footerHTML = `
@@ -68,10 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const footer = document.getElementById('main-footer');
     
     if (header) {
-        header.className = "w-full fixed top-0 left-0 z-[100] header-glass transition-all duration-300";
         header.innerHTML = headerHTML;
+        header.className = "w-full fixed top-0 left-0 z-[100] backdrop-blur-md bg-white/80 transition-all duration-500 border-b border-purple-50";
         
-        // Logica de Menu Mobile
+        // Agregar el menú mobile al final del body para evitar problemas de stacking context
+        const mobileMenuContainer = document.createElement('div');
+        mobileMenuContainer.innerHTML = mobileMenuHTML;
+        document.body.appendChild(mobileMenuContainer);
+        
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const iconMenu = document.getElementById('menu-icon');
@@ -85,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     menu.classList.add('flex');
                     iconMenu.classList.add('hidden');
                     iconClose.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; // Evitar scroll
+                    document.body.style.overflow = 'hidden'; 
                 } else {
                     menu.classList.add('hidden');
                     menu.classList.remove('flex');
