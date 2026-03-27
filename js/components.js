@@ -23,7 +23,7 @@ const headerHTML = `
     </button>
 
     <!-- MENU MOBILE OVERLAY -->
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[110] flex flex-col items-center justify-start pt-32 space-y-10 text-2xl font-bold text-purple-950 transition-all duration-300">
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[999] flex flex-col items-center justify-start pt-32 space-y-12 text-2xl font-bold text-purple-950 transition-all duration-300" style="background-color: white !important; opacity: 1 !important;">
         <a href="index.html" class="hover:text-brand-aqua">Inicio</a>
         <a href="sobre-mi.html" class="hover:text-brand-aqua">Sobre Mí</a>
         <a href="membresia.html" class="hover:text-brand-aqua">Membresía</a>
