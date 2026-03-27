@@ -24,15 +24,6 @@ const headerHTML = `
 </nav>
 `;
 
-const mobileMenuHTML = `
-<div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[999] flex flex-col items-center justify-start pt-32 space-y-12 text-2xl font-bold text-purple-950 transition-all duration-300" style="background-color: #ffffff !important; opacity: 1 !important; visibility: visible !important;">
-    <a href="index.html" class="hover:text-brand-aqua">Inicio</a>
-    <a href="sobre-mi.html" class="hover:text-brand-aqua">Sobre Mí</a>
-    <a href="membresia.html" class="hover:text-brand-aqua">Membresía</a>
-    <a href="index.html#sesiones" class="bg-brand-aqua text-white px-10 py-5 rounded-full shadow-lg">Sesiones 1:1</a>
-</div>
-`;
-
 const footerHTML = `
 <footer class="bg-purple-950 text-white py-20 px-8">
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
@@ -72,11 +63,65 @@ document.addEventListener('DOMContentLoaded', () => {
         header.innerHTML = headerHTML;
         header.className = "w-full fixed top-0 left-0 z-[100] backdrop-blur-md bg-white/80 transition-all duration-500 border-b border-purple-50";
         
-        // Agregar el menú mobile al final del body para evitar problemas de stacking context
-        const mobileMenuContainer = document.createElement('div');
-        mobileMenuContainer.innerHTML = mobileMenuHTML;
-        document.body.appendChild(mobileMenuContainer);
+        // Crear el menú mobile FUERA del header, directamente en el body
+        // Usando SOLO estilos inline para garantizar fondo sólido
+        const mobileMenuDiv = document.createElement('div');
+        mobileMenuDiv.id = 'mobile-menu';
+        mobileMenuDiv.style.cssText = `
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 8rem;
+            gap: 3rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a0a2e;
+        `;
         
+        const menuLinks = [
+            { href: 'index.html', text: 'Inicio' },
+            { href: 'sobre-mi.html', text: 'Sobre Mí' },
+            { href: 'membresia.html', text: 'Membresía' },
+        ];
+        
+        menuLinks.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.href;
+            a.textContent = link.text;
+            a.style.cssText = 'text-decoration: none; color: #1a0a2e; transition: color 0.3s;';
+            a.addEventListener('mouseenter', () => a.style.color = '#2ebfac');
+            a.addEventListener('mouseleave', () => a.style.color = '#1a0a2e');
+            mobileMenuDiv.appendChild(a);
+        });
+        
+        // Botón CTA
+        const ctaLink = document.createElement('a');
+        ctaLink.href = 'index.html#sesiones';
+        ctaLink.textContent = 'Sesiones 1:1';
+        ctaLink.style.cssText = `
+            background-color: #2ebfac;
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(46, 191, 172, 0.3);
+            font-weight: 700;
+        `;
+        mobileMenuDiv.appendChild(ctaLink);
+        
+        document.body.appendChild(mobileMenuDiv);
+        
+        // Lógica de toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const iconMenu = document.getElementById('menu-icon');
@@ -84,16 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(btn && menu) {
             btn.addEventListener('click', () => {
-                const isHidden = menu.classList.contains('hidden');
+                const isHidden = menu.style.display === 'none' || menu.style.display === '';
                 if(isHidden) {
-                    menu.classList.remove('hidden');
-                    menu.classList.add('flex');
+                    menu.style.display = 'flex';
                     iconMenu.classList.add('hidden');
                     iconClose.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; 
+                    document.body.style.overflow = 'hidden';
                 } else {
-                    menu.classList.add('hidden');
-                    menu.classList.remove('flex');
+                    menu.style.display = 'none';
                     iconMenu.classList.remove('hidden');
                     iconClose.classList.add('hidden');
                     document.body.style.overflow = '';
@@ -103,8 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Cerrar menú al hacer clic en un link
             menu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                    menu.classList.remove('flex');
+                    menu.style.display = 'none';
                     iconMenu.classList.remove('hidden');
                     iconClose.classList.add('hidden');
                     document.body.style.overflow = '';
