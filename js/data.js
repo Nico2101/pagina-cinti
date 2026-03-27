@@ -77,10 +77,15 @@ const SITE_DATA = {
         "precio": "$5.000 ARS / mes",
         "whatsapp": "https://wa.me/541165248554",
         "beneficios": [
-            "1 Encuentro grupal de coaching al mes.",
-            "Acceso a biblioteca de recursos exclusivos.",
-            "Descuento especial en todos los cursos individuales.",
-            "Comunidad en red para networking y apoyo."
+            { "titulo": "Encuentros Grupales", "descripcion": "1 sesión de coaching grupal al mes para despejar dudas y co-crear." },
+            { "titulo": "Biblioteca Exclusiva", "descripcion": "Acceso a todos los materiales, guías y grabaciones anteriores." },
+            { "titulo": "Descuentos VIP", "descripcion": "Precio preferencial en todos los nuevos cursos y talleres." }
+        ],
+        "itemsIncluidos": [
+            "Acceso al foro de la comunidad",
+            "Soporte prioritario",
+            "Plantillas de gestión emocional",
+            "Networking activo"
         ]
     },
     "sesiones": {
