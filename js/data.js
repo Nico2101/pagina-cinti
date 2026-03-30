@@ -74,12 +74,21 @@ const SITE_DATA = {
         "titulo": "Membresía 'Caminar con Sentido'",
         "subtitulo": "Tu espacio de crecimiento continuo",
         "descripcion": "Unite a una comunidad de aprendizaje continuo donde profundizamos en herramientas de coaching, gestión y bienestar mes a mes.",
-        "precio": "$5.000 ARS / mes",
+        "precio": "$11.000 ARS / mes",
         "whatsapp": "https://wa.me/541165248554",
         "beneficios": [
-            { "titulo": "Encuentros Grupales", "descripcion": "1 sesión de coaching grupal al mes para despejar dudas y co-crear." },
-            { "titulo": "Biblioteca Exclusiva", "descripcion": "Acceso a todos los materiales, guías y grabaciones anteriores." },
-            { "titulo": "Descuentos VIP", "descripcion": "Precio preferencial en todos los nuevos cursos y talleres." }
+            {
+                "titulo": "Encuentros Grupales",
+                "descripcion": "1 sesión de coaching grupal al mes para despejar dudas y co-crear."
+            },
+            {
+                "titulo": "Biblioteca Exclusiva",
+                "descripcion": "Acceso a todos los materiales, guías y grabaciones anteriores."
+            },
+            {
+                "titulo": "Descuentos VIP",
+                "descripcion": "Precio preferencial en todos los nuevos cursos y talleres."
+            }
         ],
         "itemsIncluidos": [
             "Acceso al foro de la comunidad",
@@ -102,12 +111,30 @@ const SITE_DATA = {
     },
     "sobreMi": {
         "pilares": [
-            { "titulo": "Coaching Ontológico", "descripcion": "Un enfoque que integra cuerpo, emoción y lenguaje para facilitar transformaciones profundas y sostenibles." },
-            { "titulo": "Liderazgo Consciente", "descripcion": "Herramientas para liderar desde la autenticidad, generando equipos comprometidos y resultados medibles." },
-            { "titulo": "Gestión Organizacional", "descripcion": "Más de 20 años optimizando procesos, recursos y dinámicas de trabajo en empresas de diversos rubros." },
-            { "titulo": "Bienestar Integral", "descripcion": "Un abordaje que prioriza el equilibrio entre vida personal y profesional como motor de productividad." },
-            { "titulo": "Comunicación Efectiva", "descripcion": "Técnicas para expresar ideas con claridad, generar acuerdos y construir relaciones de confianza." },
-            { "titulo": "Desarrollo Continuo", "descripcion": "Acompañamiento sostenido para que cada persona y equipo evolucione constantemente hacia su mejor versión." }
+            {
+                "titulo": "Coaching Ontológico",
+                "descripcion": "Un enfoque que integra cuerpo, emoción y lenguaje para facilitar transformaciones profundas y sostenibles."
+            },
+            {
+                "titulo": "Liderazgo Consciente",
+                "descripcion": "Herramientas para liderar desde la autenticidad, generando equipos comprometidos y resultados medibles."
+            },
+            {
+                "titulo": "Gestión Organizacional",
+                "descripcion": "Más de 20 años optimizando procesos, recursos y dinámicas de trabajo en empresas de diversos rubros."
+            },
+            {
+                "titulo": "Bienestar Integral",
+                "descripcion": "Un abordaje que prioriza el equilibrio entre vida personal y profesional como motor de productividad."
+            },
+            {
+                "titulo": "Comunicación Efectiva",
+                "descripcion": "Técnicas para expresar ideas con claridad, generar acuerdos y construir relaciones de confianza."
+            },
+            {
+                "titulo": "Desarrollo Continuo",
+                "descripcion": "Acompañamiento sostenido para que cada persona y equipo evolucione constantemente hacia su mejor versión."
+            }
         ]
     }
 };
