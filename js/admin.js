@@ -9,6 +9,7 @@ let currentData = null;
 function initAdmin() {
     currentData = JSON.parse(JSON.stringify(SITE_DATA));
     updateStats();
+    showTab('dashboard');
 }
 
 function updateStats() {
