@@ -52,6 +52,9 @@
                 <button onclick="showTab('sesiones')" class="nav-btn w-full text-left p-4 rounded-2xl flex items-center gap-4" id="btn-sesiones">
                     <span class="text-xs font-bold uppercase tracking-[0.2em]">Sesiones 1:1</span>
                 </button>
+                <button onclick="showTab('config')" class="nav-btn w-full text-left p-4 rounded-2xl flex items-center gap-4 mt-8 opacity-60 hover:opacity-100" id="btn-config">
+                    <span class="text-xs font-bold uppercase tracking-[0.2em]">⚙️ Configuración</span>
+                </button>
             </nav>
 
             <div class="space-y-4 pt-8 border-t border-white/10">
@@ -116,11 +119,58 @@
             <section id="tab-sesiones" class="tab-content space-y-10" style="display:none">
                 <div id="admin-sesiones-form" class="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50"></div>
             </section>
+
+            <!-- TAB: CONFIG -->
+            <section id="tab-config" class="tab-content space-y-10" style="display:none">
+                <div class="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50 space-y-12">
+                    <div>
+                        <h4 class="text-3xl font-serif text-[#1a0b2e] mb-2">Sincronización con GitHub</h4>
+                        <p class="text-slate-400 text-sm">Configurá el acceso directo para publicar sin descargar archivos.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Usuario GitHub</label>
+                            <input type="text" id="gh-owner" placeholder="ej: nico2101" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:border-[#2ebfac] transition-all">
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Nombre Repositorio</label>
+                            <input type="text" id="gh-repo" placeholder="ej: pagina-cinti" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:border-[#2ebfac] transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">Rama (Branch)</label>
+                            <input type="text" id="gh-branch" value="main" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:border-[#2ebfac] transition-all">
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">GitHub Token (PAT)</label>
+                            <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:border-[#2ebfac] transition-all">
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-amber-50 border border-amber-100 rounded-3xl space-y-4">
+                        <h5 class="text-sm font-bold text-amber-800 flex items-center gap-2">⚠️ Instrucciones para el Token:</h5>
+                        <ol class="text-xs text-amber-700 space-y-2 list-decimal ml-4">
+                            <li>Andá a tu cuenta de GitHub -> Settings -> Developer settings.</li>
+                            <li>Personal access tokens -> Tokens (classic).</li>
+                            <li>Generate new token (classic).</li>
+                            <li>Poné un nombre (ej: "Admin Panel") y marcá solo el permiso <b>repo</b>.</li>
+                            <li>Copiá el código generado y pegalo arriba.</li>
+                        </ol>
+                    </div>
+
+                    <button onclick="saveGithubConfig()" class="w-full p-6 bg-[#1a0b2e] text-white rounded-[2rem] font-bold hover:bg-[#2ebfac] transition-all flex items-center justify-center gap-3">
+                        💾 Guardar Configuración
+                    </button>
+                </div>
+            </section>
         </main>
     </div>
 
-    <script src="js/data.js?v=22"></script>
-    <script src="js/admin.js?v=22"></script>
+    <script src="js/data.js?v=23"></script>
+    <script src="js/admin.js?v=23"></script>
     <script>
         function checkAuth() {
             const pass = document.getElementById('admin-pass').value;

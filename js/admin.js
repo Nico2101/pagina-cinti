@@ -10,6 +10,7 @@ let currentData = null;
 function initAdmin() {
     currentData = JSON.parse(JSON.stringify(SITE_DATA));
     updateStats();
+    loadGithubConfig();
     showTab('dashboard');
 }
 
@@ -45,7 +46,8 @@ function showTab(id) {
         dashboard: 'Vista General',
         cursos: 'Gestión de Cursos',
         membresia: 'Configuración Membresía',
-        sesiones: 'Ajustes de Sesiones'
+        sesiones: 'Ajustes de Sesiones',
+        config: 'Configuración de Sistema'
     };
     document.getElementById('tab-title').innerText = titles[id] || 'Panel';
 
@@ -53,6 +55,7 @@ function showTab(id) {
     if (id === 'cursos') renderCursos();
     if (id === 'membresia') renderMembresia();
     if (id === 'sesiones') renderSesiones();
+    if (id === 'config') loadGithubConfig();
 }
 
 /* ---------- ESCAPE HTML ---------- */
@@ -291,9 +294,47 @@ function renderSesiones() {
 /* ---------- SAVE & AUTO-DEPLOY ---------- */
 function saveAll() {
     var status = document.getElementById('save-status');
-    status.style.display = 'block';
+    var config = getGithubConfig();
 
-    var content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';\n';
+    if (config.token && config.owner && config.repo) {
+        status.innerText = '⌛ Sincronizando con GitHub...';
+        status.style.display = 'block';
+
+        var content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';\n';
+        
+        updateFileOnGithub(config, 'js/data.js', content)
+            .then(function() {
+                status.innerText = '✅ ¡Sincronizado con GitHub!';
+                status.classList.remove('bg-emerald-50', 'text-emerald-600');
+                status.classList.add('bg-blue-50', 'text-blue-600');
+                setTimeout(function() { 
+                    status.style.display = 'none';
+                    status.innerText = '✨ ¡Cambios Generados!';
+                    status.classList.add('bg-emerald-50', 'text-emerald-600');
+                    status.classList.remove('bg-blue-50', 'text-blue-600');
+                }, 4000);
+            })
+            .catch(function(err) {
+                console.error(err);
+                status.innerText = '❌ Error de Sincronización';
+                status.classList.add('bg-red-50', 'text-red-600');
+                alert('Hubo un error al subir a GitHub. Se descargará el archivo manualmente como respaldo.\n\nError: ' + err.message);
+                downloadManual(content);
+                setTimeout(function() { 
+                    status.style.display = 'none';
+                    status.classList.remove('bg-red-50', 'text-red-600');
+                }, 5000);
+            });
+    } else {
+        status.innerText = '✨ Generando Archivo...';
+        status.style.display = 'block';
+        var content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';\n';
+        downloadManual(content);
+        setTimeout(function() { status.style.display = 'none'; }, 4000);
+    }
+}
+
+function downloadManual(content) {
     var blob = new Blob([content], {type: 'text/javascript'});
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
@@ -301,17 +342,73 @@ function saveAll() {
     a.download = 'data.js';
     a.click();
     URL.revokeObjectURL(url);
-
-    setTimeout(function() { status.style.display = 'none'; }, 4000);
 }
 
-function downloadBackup() {
-    var content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';\n';
-    var blob = new Blob([content], {type: 'text/javascript'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'data_backup_' + Date.now() + '.js';
-    a.click();
-    URL.revokeObjectURL(url);
+/* ---------- GITHUB API INTEGRATION ---------- */
+function getGithubConfig() {
+    return {
+        owner: localStorage.getItem('gh_owner'),
+        repo: localStorage.getItem('gh_repo'),
+        branch: localStorage.getItem('gh_branch') || 'main',
+        token: localStorage.getItem('gh_token')
+    };
+}
+
+function loadGithubConfig() {
+    var config = getGithubConfig();
+    document.getElementById('gh-owner').value = config.owner || 'nico2101';
+    document.getElementById('gh-repo').value = config.repo || 'pagina-cinti';
+    document.getElementById('gh-branch').value = config.branch || 'main';
+    document.getElementById('gh-token').value = config.token || '';
+}
+
+function saveGithubConfig() {
+    localStorage.setItem('gh_owner', document.getElementById('gh-owner').value);
+    localStorage.setItem('gh_repo', document.getElementById('gh-repo').value);
+    localStorage.setItem('gh_branch', document.getElementById('gh-branch').value);
+    localStorage.setItem('gh_token', document.getElementById('gh-token').value);
+    alert('✅ Configuración guardada correctamente.');
+    showTab('dashboard');
+}
+
+async function updateFileOnGithub(config, path, content) {
+    var baseUrl = 'https://api.github.com/repos/' + config.owner + '/' + config.repo + '/contents/' + path;
+    var headers = {
+        'Authorization': 'token ' + config.token,
+        'Accept': 'application/vnd.github.v3+json'
+    };
+
+    // 1. Get current file SHA (required for update)
+    var getRes = await fetch(baseUrl + '?ref=' + config.branch, { headers: headers });
+    var sha = null;
+    if (getRes.status === 200) {
+        var fileData = await getRes.json();
+        sha = fileData.sha;
+    }
+
+    // 2. Update file
+    var putRes = await fetch(baseUrl, {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify({
+            message: 'Update ' + path + ' from Admin Panel',
+            content: b64EncodeUnicode(content),
+            sha: sha,
+            branch: config.branch
+        })
+    });
+
+    if (!putRes.ok) {
+        var error = await putRes.json();
+        throw new Error(error.message || 'Error desconocido al subir a GitHub');
+    }
+
+    return true;
+}
+
+// UTF-8 base64 encoding (standard btoa fails with special chars)
+function b64EncodeUnicode(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
 }
