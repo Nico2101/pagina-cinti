@@ -40,20 +40,16 @@
             </div>
             
             <nav class="flex-grow space-y-3">
-                <button onclick="showTab('dashboard')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-dashboard">
-                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                <button onclick="showTab('dashboard')" class="nav-btn w-full text-left p-4 rounded-2xl flex items-center gap-4" id="btn-dashboard">
                     <span class="text-xs font-bold uppercase tracking-[0.2em]">Dashboard</span>
                 </button>
-                <button onclick="showTab('cursos')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-cursos">
-                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                <button onclick="showTab('cursos')" class="nav-btn w-full text-left p-4 rounded-2xl flex items-center gap-4" id="btn-cursos">
                     <span class="text-xs font-bold uppercase tracking-[0.2em]">Cursos Online</span>
                 </button>
-                <button onclick="showTab('membresia')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-membresia">
-                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                <button onclick="showTab('membresia')" class="nav-btn w-full text-left p-4 rounded-2xl flex items-center gap-4" id="btn-membresia">
                     <span class="text-xs font-bold uppercase tracking-[0.2em]">Membresía</span>
                 </button>
-                <button onclick="showTab('sesiones')" class="nav-btn w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4 hover:bg-white/5 group" id="btn-sesiones">
-                    <div class="w-2 h-2 rounded-full bg-brand-aqua opacity-0 group-[.tab-active]:opacity-100"></div>
+                <button onclick="showTab('sesiones')" class="nav-btn w-full text-left p-4 rounded-2xl flex items-center gap-4" id="btn-sesiones">
                     <span class="text-xs font-bold uppercase tracking-[0.2em]">Sesiones 1:1</span>
                 </button>
             </nav>
@@ -77,13 +73,13 @@
                     <h1 id="tab-title" class="text-5xl font-serif text-[#1a0b2e] mb-3">Panel de Control</h1>
                     <p class="text-slate-400 font-medium italic">Gestioná cada detalle de tu presencia profesional.</p>
                 </div>
-                <div id="save-status" class="hidden px-8 py-3 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold border border-emerald-100 animate-bounce">
+                <div id="save-status" style="display:none" class="px-8 py-3 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold border border-emerald-100 animate-bounce">
                     ✨ ¡Cambios Generados!
                 </div>
             </div>
 
             <!-- TAB: DASHBOARD -->
-            <section id="tab-dashboard" class="tab-content space-y-12">
+            <section id="tab-dashboard" class="tab-content space-y-12" style="display:none">
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-50 relative overflow-hidden group hover:shadow-xl hover:shadow-purple-900/5 transition-all">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-brand-aqua/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
@@ -107,24 +103,24 @@
             </section>
 
             <!-- TAB: CURSOS -->
-            <section id="tab-cursos" class="tab-content hidden space-y-10">
+            <section id="tab-cursos" class="tab-content space-y-10" style="display:none">
                 <div id="admin-cursos-list" class="space-y-10"></div>
             </section>
 
             <!-- TAB: MEMBRESIA -->
-            <section id="tab-membresia" class="tab-content hidden space-y-10">
+            <section id="tab-membresia" class="tab-content space-y-10" style="display:none">
                 <div id="admin-membresia-form" class="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50"></div>
             </section>
 
             <!-- TAB: SESIONES -->
-            <section id="tab-sesiones" class="tab-content hidden space-y-10">
+            <section id="tab-sesiones" class="tab-content space-y-10" style="display:none">
                 <div id="admin-sesiones-form" class="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50"></div>
             </section>
         </main>
     </div>
 
-    <script src="js/data.js?v=21"></script>
-    <script src="js/admin.js?v=21"></script>
+    <script src="js/data.js?v=22"></script>
+    <script src="js/admin.js?v=22"></script>
     <script>
         function checkAuth() {
             const pass = document.getElementById('admin-pass').value;
