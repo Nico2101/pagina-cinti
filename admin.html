@@ -123,8 +123,8 @@
         </main>
     </div>
 
-    <script src="js/data.js?v=15"></script>
-    <script src="js/admin.js?v=15"></script>
+    <script src="js/data.js?v=20"></script>
+    <script src="js/admin.js?v=20"></script>
     <script>
         function checkAuth() {
             const pass = document.getElementById('admin-pass').value;
@@ -132,26 +132,9 @@
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('admin-dashboard').classList.remove('hidden');
                 initAdmin();
-                showTab('dashboard');
             } else {
                 document.getElementById('login-error').classList.remove('hidden');
             }
-        }
-
-        function showTab(id) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-            document.getElementById('tab-' + id).classList.remove('hidden');
-            
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('tab-active'));
-            document.getElementById('btn-' + id).classList.add('tab-active');
-            
-            const titles = {
-                dashboard: 'Dashboard General',
-                cursos: 'Gestión de Cursos',
-                membresia: 'Configuración de Membresía',
-                sesiones: 'Ajustes de Sesiones 1:1'
-            };
-            document.getElementById('tab-title').innerText = titles[id];
         }
     </script>
 </body>

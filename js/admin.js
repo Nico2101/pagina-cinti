@@ -1,232 +1,305 @@
+/* ===================================================
+   ADMIN.JS — Panel de Control Total V3
+   Cintia Agostino — admin.html
+   =================================================== */
+
 let currentData = null;
 
+/* ---------- INIT ---------- */
 function initAdmin() {
     currentData = JSON.parse(JSON.stringify(SITE_DATA));
     updateStats();
-    showTab('dashboard');
 }
 
 function updateStats() {
     document.getElementById('stats-cursos').innerText = currentData.cursos.length;
 }
 
-function showTab(id) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-    document.getElementById(`tab-${id}`).classList.remove('hidden');
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('tab-active', 'bg-white/10'));
-    document.getElementById(`btn-${id}`).classList.add('tab-active');
-    
-    // Refresh content
-    if(id === 'cursos') renderCursos();
-    if(id === 'membresia') renderMembresia();
-    if(id === 'sesiones') renderSesiones();
-    
-    const titles = {
-        dashboard: 'Vista General',
-        cursos: 'Gestión de Cursos',
-        membresia: 'Configuración Membresía',
-        sesiones: 'Ajustes de Sesiones'
-    };
-    document.getElementById('tab-title').innerText = titles[id];
-}
-
-// HELPER: RENDER LIST EDITOR (TOTAL CONTROL)
-function renderListEditor(array, onUpdate, placeholder = "Agregar ítem...") {
+/* ---------- LIST EDITOR (TOTAL CONTROL) ---------- */
+function renderListEditor(listId, array, placeholder) {
     if (!array) array = [];
-    const listHtml = array.map((item, index) => `
-        <div class="flex gap-3 items-center group bg-slate-50 p-2 rounded-xl border border-slate-100">
-            <input type="text" value="${item}" onchange="${onUpdate}(this, ${index})" 
-                   class="flex-grow p-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-aqua text-sm outline-none transition-all">
-            <button onclick="${onUpdate}(null, ${index})" class="p-3 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-            </button>
-        </div>
-    `).join('');
+    placeholder = placeholder || 'Agregar ítem...';
+    let html = '<div class="space-y-3">';
 
-    return `
-        <div class="space-y-3">
-            ${listHtml}
-            <button onclick="${onUpdate}({value:''}, -1)" class="w-full p-4 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 hover:border-brand-aqua hover:text-brand-aqua transition-all text-xs font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2">
-                <span>+ ${placeholder}</span>
-            </button>
-        </div>
-    `;
+    array.forEach(function(item, index) {
+        html += '<div class="flex gap-3 items-center group bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">';
+        html += '  <input type="text" value="' + escapeHtml(item) + '" data-list="' + listId + '" data-index="' + index + '" data-action="edit"';
+        html += '         class="flex-grow p-2 bg-transparent border-none focus:ring-0 text-sm outline-none font-medium text-slate-700">';
+        html += '  <button data-list="' + listId + '" data-index="' + index + '" data-action="delete" class="p-2 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">';
+        html += '    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>';
+        html += '  </button>';
+        html += '</div>';
+    });
+
+    html += '<button data-list="' + listId + '" data-action="add" class="w-full p-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 hover:border-[#2ebfac] hover:text-[#2ebfac] transition-all text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2">';
+    html += '  <span>+ ' + placeholder + '</span>';
+    html += '</button>';
+    html += '</div>';
+    return html;
 }
 
-function renderCursos() {
-    const grid = document.getElementById('admin-cursos-list');
-    grid.innerHTML = currentData.cursos.map((c, i) => `
-        <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm space-y-10">
-            <div class="flex justify-between items-center border-b border-slate-50 pb-6">
-                <div>
-                    <h4 class="text-2xl font-serif text-purple-950">${c.titulo || 'Sin Título'}</h4>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">ID: ${c.id}</p>
-                </div>
-            </div>
-            
-            <div class="grid gap-8">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Título del Curso</label>
-                        <input type="text" value="${c.titulo}" onchange="updateValue('cursos', ${i}, 'titulo', this.value)" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-brand-aqua outline-none">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Precio</label>
-                        <input type="text" value="${c.precio}" onchange="updateValue('cursos', ${i}, 'precio', this.value)" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-brand-aqua outline-none">
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Descripción Corta (Cards)</label>
-                    <input type="text" value="${c.descripcionCorta}" onchange="updateValue('cursos', ${i}, 'descripcionCorta', this.value)" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm outline-none">
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Descripción Larga (Detalles)</label>
-                    <textarea onchange="updateValue('cursos', ${i}, 'descripcionLarga', this.value)" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm h-32 outline-none">${c.descripcionLarga}</textarea>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Link de Pago (Mercado Pago)</label>
-                        <input type="text" value="${c.linkPago}" onchange="updateValue('cursos', ${i}, 'linkPago', this.value)" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm outline-none">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Imagen del Curso (URL/Path)</label>
-                        <input type="text" value="${c.imagen}" onchange="updateValue('cursos', ${i}, 'imagen', this.value)" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm outline-none">
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-10 pt-4">
-                    <div class="space-y-4">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Lo que aprenderás (Lista)</label>
-                        ${renderListEditor(c.aprendizajes, `(input, index) => updateArray('cursos', ${i}, 'aprendizajes', input, index, 'renderCursos')`, "Aprendizaje")}
-                    </div>
-                    <div class="space-y-4">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Detalles / Logística (Lista)</label>
-                        ${renderListEditor(c.detalles, `(input, index) => updateArray('cursos', ${i}, 'detalles', input, index, 'renderCursos')`, "Detalle")}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `).join('');
+function escapeHtml(text) {
+    if (typeof text !== 'string') return '';
+    return text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function renderMembresia() {
-    const m = currentData.membresia;
-    const container = document.getElementById('admin-membresia-form');
-    container.innerHTML = `
-        <div class="space-y-12">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Título Membresía</label>
-                    <input type="text" value="${m.titulo}" onchange="currentData.membresia.titulo = this.value" class="w-full p-5 bg-slate-50 border-none rounded-3xl text-lg font-serif outline-none">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Precio Mensual</label>
-                    <input type="text" value="${m.precio}" onchange="currentData.membresia.precio = this.value" class="w-full p-5 bg-slate-50 border-none rounded-3xl text-lg font-bold outline-none">
-                </div>
-            </div>
-            
-            <div class="space-y-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Descripción Principal</label>
-                <textarea onchange="currentData.membresia.descripcion = this.value" class="w-full p-6 bg-slate-50 border-none rounded-3xl text-sm h-32 outline-none">${m.descripcion}</textarea>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Beneficios (Título + Desc)</label>
-                    <div class="space-y-6">
-                        ${m.beneficios.map((b, bi) => `
-                            <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100 flex flex-col gap-3 relative group">
-                                <input type="text" value="${b.titulo}" onchange="currentData.membresia.beneficios[${bi}].titulo = this.value" placeholder="Título..." class="bg-white p-3 rounded-xl border border-slate-100 font-bold text-sm outline-none">
-                                <textarea onchange="currentData.membresia.beneficios[${bi}].descripcion = this.value" placeholder="Descripción..." class="bg-white p-3 rounded-xl border border-slate-100 text-xs h-20 outline-none">${b.descripcion}</textarea>
-                                <button onclick="currentData.membresia.beneficios.splice(${bi}, 1); renderMembresia()" class="absolute -top-3 -right-3 w-8 h-8 bg-white text-red-500 rounded-full shadow-lg border border-red-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity font-bold">×</button>
-                            </div>
-                        `).join('')}
-                        <button onclick="currentData.membresia.beneficios.push({titulo:'',descripcion:''}); renderMembresia()" class="w-full p-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 hover:text-brand-aqua text-xs font-bold uppercase tracking-widest">+ Nuevo Beneficio</button>
-                    </div>
-                </div>
-                <div class="space-y-6">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Checklist de Incluidos</label>
-                    ${renderListEditor(m.itemsIncluidos, `(input, index) => updateArray('membresia', null, 'itemsIncluidos', input, index, 'renderMembresia')`, "Ítem")}
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function renderSesiones() {
-    const s = currentData.sesiones;
-    const container = document.getElementById('admin-sesiones-form');
-    container.innerHTML = `
-        <div class="space-y-12">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Título Sección</label>
-                    <input type="text" value="${s.titulo}" onchange="currentData.sesiones.titulo = this.value" class="w-full p-5 bg-slate-50 border-none rounded-3xl text-lg font-serif outline-none">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Precio por Sesión</label>
-                    <input type="text" value="${s.precio}" onchange="currentData.sesiones.precio = this.value" class="w-full p-5 bg-slate-50 border-none rounded-3xl text-lg font-bold outline-none">
-                </div>
-            </div>
-            
-            <div class="space-y-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Descripción del Servicio</label>
-                <textarea onchange="currentData.sesiones.descripcion = this.value" class="w-full p-6 bg-slate-50 border-none rounded-3xl text-sm h-32 outline-none">${s.descripcion}</textarea>
-            </div>
-
-            <div class="space-y-6 max-w-2xl">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac]">Puntos Clave / Beneficios</label>
-                ${renderListEditor(s.beneficios, `(input, index) => updateArray('sesiones', null, 'beneficios', input, index, 'renderSesiones')`, "Beneficio")}
-            </div>
-        </div>
-    `;
-}
-
-// GENERIC UPDATE FUNCTIONS
-function updateValue(category, index, field, value) {
-    if (index !== null) currentData[category][index][field] = value;
-    else currentData[category][field] = value;
-}
-
-function updateArray(category, cIndex, field, input, arrIndex, refreshFunc) {
-    const arr = (cIndex !== null) ? currentData[category][cIndex][field] : currentData[category][field];
-    
-    if (input === null) { // DELETE
-        arr.splice(arrIndex, 1);
-    } else if (arrIndex === -1) { // ADD
-        arr.push("");
-    } else { // EDIT
-        arr[arrIndex] = input.value;
+/* ---------- GLOBAL EVENT DELEGATION ---------- */
+document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action="delete"]');
+    if (btn) {
+        handleListAction(btn.dataset.list, 'delete', parseInt(btn.dataset.index));
+        return;
     }
-    window[refreshFunc]();
+    btn = e.target.closest('[data-action="add"]');
+    if (btn) {
+        handleListAction(btn.dataset.list, 'add', -1);
+        return;
+    }
+});
+
+document.addEventListener('change', function(e) {
+    if (e.target.dataset && e.target.dataset.action === 'edit') {
+        handleListAction(e.target.dataset.list, 'edit', parseInt(e.target.dataset.index), e.target.value);
+    }
+});
+
+function handleListAction(listId, action, index, value) {
+    // Parse listId: "cursos-0-aprendizajes" or "membresia-beneficios" etc.
+    var parts = listId.split('-');
+    var arr = null;
+    var refreshFn = null;
+
+    if (parts[0] === 'cursos') {
+        var ci = parseInt(parts[1]);
+        var field = parts[2];
+        arr = currentData.cursos[ci][field];
+        refreshFn = renderCursos;
+    } else if (parts[0] === 'membresia') {
+        var field = parts[1];
+        arr = currentData.membresia[field];
+        refreshFn = renderMembresia;
+    } else if (parts[0] === 'sesiones') {
+        var field = parts[1];
+        arr = currentData.sesiones[field];
+        refreshFn = renderSesiones;
+    }
+
+    if (!arr) return;
+
+    if (action === 'delete') {
+        arr.splice(index, 1);
+    } else if (action === 'add') {
+        arr.push('');
+    } else if (action === 'edit') {
+        arr[index] = value;
+    }
+
+    if (refreshFn) refreshFn();
 }
 
+/* ---------- RENDER: CURSOS ---------- */
+function renderCursos() {
+    var grid = document.getElementById('admin-cursos-list');
+    var html = '';
+
+    currentData.cursos.forEach(function(c, i) {
+        html += '<div class="bg-white p-12 rounded-[3.5rem] border border-slate-100 shadow-sm space-y-12">';
+
+        // Header
+        html += '<div class="flex justify-between items-center border-b border-slate-50 pb-8">';
+        html += '  <div>';
+        html += '    <h4 class="text-3xl font-serif text-[#1a0b2e]">' + escapeHtml(c.titulo || 'Sin Título') + '</h4>';
+        html += '    <p class="text-[10px] text-[#2ebfac] font-bold uppercase tracking-widest mt-2">ID: ' + escapeHtml(c.id) + '</p>';
+        html += '  </div>';
+        html += '</div>';
+
+        html += '<div class="grid gap-10">';
+
+        // Row 1: Titulo + Precio
+        html += '<div class="grid md:grid-cols-2 gap-8">';
+        html += fieldBox('Título Visible', 'text', c.titulo, 'cursos', i, 'titulo', 'font-medium');
+        html += fieldBox('Precio de Venta', 'text', c.precio, 'cursos', i, 'precio', 'font-bold text-[#2ebfac]');
+        html += '</div>';
+
+        // Desc corta
+        html += fieldBox('Resumen (Home)', 'text', c.descripcionCorta, 'cursos', i, 'descripcionCorta', 'text-sm');
+
+        // Desc larga
+        html += fieldArea('Descripción Detallada', c.descripcionLarga, 'cursos', i, 'descripcionLarga');
+
+        // Links
+        html += '<div class="grid md:grid-cols-2 gap-8">';
+        html += fieldBox('Link de Pago (URL)', 'text', c.linkPago, 'cursos', i, 'linkPago', 'text-xs text-slate-500');
+        html += fieldBox('Imagen del Curso (Ruta)', 'text', c.imagen, 'cursos', i, 'imagen', 'text-xs text-slate-500');
+        html += '</div>';
+
+        // Lists: Aprendizajes + Detalles
+        html += '<div class="grid md:grid-cols-2 gap-12 pt-6">';
+        html += '<div class="space-y-6">';
+        html += '  <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac] border-b border-[#2ebfac]/20 pb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#2ebfac]"></span> Aprendizajes Clave</label>';
+        html += renderListEditor('cursos-' + i + '-aprendizajes', c.aprendizajes, 'Nuevo Aprendizaje');
+        html += '</div>';
+        html += '<div class="space-y-6">';
+        html += '  <label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac] border-b border-[#2ebfac]/20 pb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#2ebfac]"></span> Detalles Logísticos</label>';
+        html += renderListEditor('cursos-' + i + '-detalles', c.detalles, 'Nuevo Detalle');
+        html += '</div>';
+        html += '</div>';
+
+        html += '</div>'; // gap-10
+        html += '</div>'; // card
+    });
+
+    grid.innerHTML = html;
+}
+
+/* ---------- RENDER: MEMBRESÍA ---------- */
+function renderMembresia() {
+    var m = currentData.membresia;
+    var container = document.getElementById('admin-membresia-form');
+    var html = '<div class="space-y-12">';
+
+    // Row 1: Titulo + Precio
+    html += '<div class="grid md:grid-cols-2 gap-8">';
+    html += fieldBox('Título de Membresía', 'text', m.titulo, 'membresia', null, 'titulo', 'text-2xl font-serif text-[#1a0b2e]');
+    html += fieldBox('Precio Mensual', 'text', m.precio, 'membresia', null, 'precio', 'text-2xl font-bold text-[#2ebfac]');
+    html += '</div>';
+
+    // Descripción
+    html += fieldArea('Propuesta de Valor', m.descripcion, 'membresia', null, 'descripcion');
+
+    // Two columns: Beneficios + Checklist
+    html += '<div class="grid md:grid-cols-2 gap-12">';
+
+    // Beneficios (titulo + desc objects)
+    html += '<div class="space-y-8">';
+    html += '<label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac] border-b border-[#2ebfac]/20 pb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#2ebfac]"></span> Beneficios Detallados</label>';
+    html += '<div class="space-y-6">';
+
+    m.beneficios.forEach(function(b, bi) {
+        html += '<div class="bg-slate-50 p-6 rounded-[2.5rem] border border-slate-100 flex flex-col gap-4 relative group shadow-sm">';
+        html += '  <input type="text" value="' + escapeHtml(b.titulo) + '" data-cat="membresia" data-field="beneficios" data-bi="' + bi + '" data-subfield="titulo" class="admin-obj-field bg-white p-4 rounded-2xl border border-slate-200 font-bold text-sm outline-none" placeholder="Título...">';
+        html += '  <textarea data-cat="membresia" data-field="beneficios" data-bi="' + bi + '" data-subfield="descripcion" class="admin-obj-field bg-white p-4 rounded-2xl border border-slate-200 text-xs h-24 outline-none leading-relaxed" placeholder="Descripción...">' + escapeHtml(b.descripcion) + '</textarea>';
+        html += '  <button data-delete-benefit="' + bi + '" class="absolute -top-3 -right-3 w-10 h-10 bg-white text-red-500 rounded-full shadow-xl border border-red-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity font-bold">×</button>';
+        html += '</div>';
+    });
+
+    html += '<button id="add-mem-benefit" class="w-full p-5 border-2 border-dashed border-slate-200 rounded-[2.5rem] text-slate-400 hover:text-[#2ebfac] hover:border-[#2ebfac] text-[10px] font-bold uppercase tracking-widest transition-all">+ Nuevo Beneficio</button>';
+    html += '</div></div>';
+
+    // Checklist
+    html += '<div class="space-y-8">';
+    html += '<label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac] border-b border-[#2ebfac]/20 pb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#2ebfac]"></span> Checklist de Incluidos</label>';
+    html += renderListEditor('membresia-itemsIncluidos', m.itemsIncluidos, 'Nuevo Ítem');
+    html += '</div>';
+
+    html += '</div>'; // grid
+    html += '</div>'; // root
+    container.innerHTML = html;
+
+    // Wire up benefit-specific events
+    container.querySelectorAll('[data-delete-benefit]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            currentData.membresia.beneficios.splice(parseInt(this.dataset.deleteBenefit), 1);
+            renderMembresia();
+        });
+    });
+    document.getElementById('add-mem-benefit').addEventListener('click', function() {
+        currentData.membresia.beneficios.push({titulo: '', descripcion: ''});
+        renderMembresia();
+    });
+    container.querySelectorAll('.admin-obj-field').forEach(function(input) {
+        input.addEventListener('change', function() {
+            var bi = parseInt(this.dataset.bi);
+            var sub = this.dataset.subfield;
+            currentData.membresia.beneficios[bi][sub] = this.value;
+        });
+    });
+}
+
+/* ---------- RENDER: SESIONES ---------- */
+function renderSesiones() {
+    var s = currentData.sesiones;
+    var container = document.getElementById('admin-sesiones-form');
+    var html = '<div class="space-y-12">';
+
+    html += '<div class="grid md:grid-cols-2 gap-8">';
+    html += fieldBox('Título de Sección', 'text', s.titulo, 'sesiones', null, 'titulo', 'text-2xl font-serif text-[#1a0b2e]');
+    html += fieldBox('Costo por Sesión', 'text', s.precio, 'sesiones', null, 'precio', 'text-2xl font-bold text-[#2ebfac]');
+    html += '</div>';
+
+    html += fieldArea('Descripción del Acompañamiento', s.descripcion, 'sesiones', null, 'descripcion');
+
+    html += '<div class="space-y-8 max-w-3xl">';
+    html += '<label class="text-[10px] font-bold uppercase tracking-widest text-[#2ebfac] border-b border-[#2ebfac]/20 pb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#2ebfac]"></span> Puntos de Valor 1:1</label>';
+    html += renderListEditor('sesiones-beneficios', s.beneficios, 'Nuevo Beneficio');
+    html += '</div>';
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+/* ---------- FIELD HELPERS ---------- */
+function fieldBox(label, type, value, cat, index, field, extraClass) {
+    extraClass = extraClass || '';
+    var html = '<div class="space-y-3">';
+    html += '<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">' + label + '</label>';
+    html += '<input type="' + type + '" value="' + escapeHtml(value || '') + '" data-cat="' + cat + '"';
+    if (index !== null && index !== undefined) html += ' data-index="' + index + '"';
+    html += ' data-field="' + field + '" class="admin-field w-full p-5 bg-white border border-slate-200 rounded-[1.5rem] shadow-sm outline-none ' + extraClass + '">';
+    html += '</div>';
+    return html;
+}
+
+function fieldArea(label, value, cat, index, field) {
+    var html = '<div class="space-y-3">';
+    html += '<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">' + label + '</label>';
+    html += '<textarea data-cat="' + cat + '"';
+    if (index !== null && index !== undefined) html += ' data-index="' + index + '"';
+    html += ' data-field="' + field + '" class="admin-field w-full p-6 bg-white border border-slate-200 rounded-[2rem] shadow-sm text-sm h-40 outline-none leading-relaxed">' + escapeHtml(value || '') + '</textarea>';
+    html += '</div>';
+    return html;
+}
+
+/* ---------- FIELD CHANGE DELEGATION ---------- */
+document.addEventListener('change', function(e) {
+    if (e.target.classList && e.target.classList.contains('admin-field')) {
+        var cat = e.target.dataset.cat;
+        var field = e.target.dataset.field;
+        var index = e.target.dataset.index;
+        var val = e.target.value;
+
+        if (index !== undefined) {
+            currentData[cat][parseInt(index)][field] = val;
+        } else {
+            currentData[cat][field] = val;
+        }
+    }
+});
+
+/* ---------- SAVE / BACKUP ---------- */
 function saveAll() {
-    const status = document.getElementById('save-status');
+    var status = document.getElementById('save-status');
     status.classList.remove('hidden');
-    
-    const content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';';
-    const blob = new Blob([content], {type: 'text/javascript'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+
+    var content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';\n';
+    var blob = new Blob([content], {type: 'text/javascript'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
     a.href = url;
     a.download = 'data.js';
     a.click();
     URL.revokeObjectURL(url);
 
-    setTimeout(() => status.classList.add('hidden'), 3000);
+    setTimeout(function() { status.classList.add('hidden'); }, 3000);
 }
 
 function downloadBackup() {
-    const content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';';
-    const blob = new Blob([content], {type: 'text/javascript'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    var content = 'const SITE_DATA = ' + JSON.stringify(currentData, null, 4) + ';\n';
+    var blob = new Blob([content], {type: 'text/javascript'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
     a.href = url;
-    a.download = `data_backup_${new Date().getTime()}.js`;
+    a.download = 'data_backup_' + Date.now() + '.js';
     a.click();
     URL.revokeObjectURL(url);
 }

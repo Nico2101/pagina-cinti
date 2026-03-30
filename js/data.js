@@ -99,5 +99,15 @@ const SITE_DATA = {
             "Herramientas aplicables desde la primera sesión."
         ],
         "whatsapp": "https://wa.me/541165248554"
+    },
+    "sobreMi": {
+        "pilares": [
+            { "titulo": "Coaching Ontológico", "descripcion": "Un enfoque que integra cuerpo, emoción y lenguaje para facilitar transformaciones profundas y sostenibles." },
+            { "titulo": "Liderazgo Consciente", "descripcion": "Herramientas para liderar desde la autenticidad, generando equipos comprometidos y resultados medibles." },
+            { "titulo": "Gestión Organizacional", "descripcion": "Más de 20 años optimizando procesos, recursos y dinámicas de trabajo en empresas de diversos rubros." },
+            { "titulo": "Bienestar Integral", "descripcion": "Un abordaje que prioriza el equilibrio entre vida personal y profesional como motor de productividad." },
+            { "titulo": "Comunicación Efectiva", "descripcion": "Técnicas para expresar ideas con claridad, generar acuerdos y construir relaciones de confianza." },
+            { "titulo": "Desarrollo Continuo", "descripcion": "Acompañamiento sostenido para que cada persona y equipo evolucione constantemente hacia su mejor versión." }
+        ]
     }
 };
